@@ -14,7 +14,7 @@ class TaxiIcon extends StatelessWidget {
       children: [
         Image(
           image: AssetImage('assets/taxi.jpg'),
-          width: 100,
+          width: 80,
         ),
         Text(title),
       ],
