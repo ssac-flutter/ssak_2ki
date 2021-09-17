@@ -95,26 +95,12 @@ class KakaoPage extends StatelessWidget {
           ListView(
             shrinkWrap: true,
             physics: NeverScrollableScrollPhysics(),
-            children: [
-              ListTile(
-                leading: Icon(Icons.alarm),
-                title: Text('첫 번째 공지'),
-                subtitle: Text('이것은 서브!!'),
-                trailing: Icon(Icons.arrow_forward_outlined),
-              ),
-              ListTile(
-                leading: Icon(Icons.alarm),
-                title: Text('첫 번째 공지'),
-                subtitle: Text('이것은 서브!!'),
-                trailing: Icon(Icons.arrow_forward_outlined),
-              ),
-              ListTile(
-                leading: Icon(Icons.alarm),
-                title: Text('첫 번째 공지'),
-                subtitle: Text('이것은 서브!!'),
-                trailing: Icon(Icons.arrow_forward_outlined),
-              ),
-            ],
+            children: _notices.map((e) => ListTile(
+              leading: Icon(Icons.alarm),
+              title: Text(e),
+              subtitle: Text('이것은 서브!!'),
+              trailing: Icon(Icons.arrow_forward_outlined),
+            )).toList()
           ),
         ],
       ),
