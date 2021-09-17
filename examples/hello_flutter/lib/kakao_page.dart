@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:hello_flutter/ads/ad_widget.dart';
+import 'package:hello_flutter/widget/ad_widget.dart';
+import 'package:hello_flutter/widget/taxi_icon.dart';
 
 class KakaoPage extends StatelessWidget {
   const KakaoPage({Key key}) : super(key: key);
@@ -19,74 +20,18 @@ class KakaoPage extends StatelessWidget {
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceAround,
             children: [
-              Column(
-                children: [
-                  Image(
-                    image: AssetImage('assets/taxi.jpg'),
-                    width: 100,
-                  ),
-                  Text('택시'),
-                ],
-              ),
-              Column(
-                children: [
-                  Image(
-                    image: AssetImage('assets/taxi.jpg'),
-                    width: 100,
-                  ),
-                  Text('택시'),
-                ],
-              ),
-              Column(
-                children: [
-                  Image(
-                    image: AssetImage('assets/taxi.jpg'),
-                    width: 100,
-                  ),
-                  Text('택시'),
-                ],
-              ),
-              Column(
-                children: [
-                  Image(
-                    image: AssetImage('assets/taxi.jpg'),
-                    width: 100,
-                  ),
-                  Text('택시'),
-                ],
-              ),
+              TaxiIcon(title: '택시',),
+              TaxiIcon(title: '버스',),
+              TaxiIcon(title: '자전거',),
+              TaxiIcon(title: '대리',),
             ],
           ),
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceAround,
             children: [
-              Column(
-                children: [
-                  Image(
-                    image: AssetImage('assets/taxi.jpg'),
-                    width: 100,
-                  ),
-                  Text('택시'),
-                ],
-              ),
-              Column(
-                children: [
-                  Image(
-                    image: AssetImage('assets/taxi.jpg'),
-                    width: 100,
-                  ),
-                  Text('택시'),
-                ],
-              ),
-              Column(
-                children: [
-                  Image(
-                    image: AssetImage('assets/taxi.jpg'),
-                    width: 100,
-                  ),
-                  Text('택시'),
-                ],
-              ),
+              TaxiIcon(title: '택시2',),
+              TaxiIcon(title: '택시3',),
+              TaxiIcon(title: '택시4',),
               SizedBox(
                 width: 100,
               ),
@@ -111,3 +56,4 @@ class KakaoPage extends StatelessWidget {
     );
   }
 }
+
