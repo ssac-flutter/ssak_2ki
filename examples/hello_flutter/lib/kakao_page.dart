@@ -33,6 +33,20 @@ class KakaoPage extends StatelessWidget {
     }
   ];
 
+  // 공지사항
+  final _notices = [
+    '첫 번째 공지',
+    '첫 번째 공지',
+    '첫 번째 공지',
+    '첫 번째 공지',
+    '첫 번째 공지',
+    '첫 번째 공지',
+    '첫 번째 공지',
+    '첫 번째 공지',
+    '첫 번째 공지',
+    '첫 번째 공지',
+  ];
+
   @override
   Widget build(BuildContext context) {
     // 기존 Java 스타일
@@ -52,32 +66,75 @@ class KakaoPage extends StatelessWidget {
         ),
         backgroundColor: Colors.white,
       ),
-      body: Column(
-        children: [
-          GridView.count(
-            crossAxisCount: 4,
-            children: _menuItems.map((e) => TaxiIcon(title: e)).toList(),
-            shrinkWrap: true,
-          ),
-          // 광고자리
-          AspectRatio(
-            aspectRatio: 2 / 1,
-            child: PageView(
-              scrollDirection: Axis.horizontal,
-              controller: pageController,
-              children: _adItems.map((e) {
-                // 작성할 것 있으면 더 작성
-                return AdWidget(
-                  title: e['title'],
-                  subTitle: e['subTitle'],
-                  imageUrl: e['imageUrl'],
-                  color: e['color'],
-                );
-              }).toList(),
+      body: SingleChildScrollView(
+        child: Column(
+          children: [
+            GridView.count(
+              crossAxisCount: 4,
+              children: _menuItems.map((e) => TaxiIcon(title: e)).toList(),
+              shrinkWrap: true,
             ),
-          ),
-        ],
+            // 광고자리
+            AspectRatio(
+              aspectRatio: 2 / 1,
+              child: PageView(
+                scrollDirection: Axis.horizontal,
+                controller: pageController,
+                children: _adItems.map((e) {
+                  // 작성할 것 있으면 더 작성
+                  return AdWidget(
+                    title: e['title'],
+                    subTitle: e['subTitle'],
+                    imageUrl: e['imageUrl'],
+                    color: e['color'],
+                  );
+                }).toList(),
+              ),
+            ),
+            // 공지
+            ListTile(
+              leading: Icon(Icons.alarm),
+              title: Text('첫 번째 공지'),
+              subtitle: Text('이것은 서브!!'),
+              trailing: Icon(Icons.arrow_forward_outlined),
+            ),
+            ListTile(
+              leading: Icon(Icons.alarm),
+              title: Text('첫 번째 공지'),
+              subtitle: Text('이것은 서브!!'),
+              trailing: Icon(Icons.arrow_forward_outlined),
+            ),
+            ListTile(
+              leading: Icon(Icons.alarm),
+              title: Text('첫 번째 공지'),
+              subtitle: Text('이것은 서브!!'),
+              trailing: Icon(Icons.arrow_forward_outlined),
+            ),
+          ],
+        ),
       ),
     );
   }
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
