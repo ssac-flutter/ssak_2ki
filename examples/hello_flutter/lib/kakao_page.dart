@@ -92,16 +92,12 @@ class KakaoPage extends StatelessWidget {
             ),
           ),
           // 공지
-          ListView(
-            shrinkWrap: true,
-            physics: NeverScrollableScrollPhysics(),
-            children: _notices.map((e) => ListTile(
-              leading: Icon(Icons.alarm),
-              title: Text(e),
-              subtitle: Text('이것은 서브!!'),
-              trailing: Icon(Icons.arrow_forward_outlined),
-            )).toList()
-          ),
+          ..._notices.map((e) => ListTile(
+            leading: Icon(Icons.alarm),
+            title: Text(e),
+            subtitle: Text('이것은 서브!!'),
+            trailing: Icon(Icons.arrow_forward_outlined),
+          )).toList()
         ],
       ),
     );
