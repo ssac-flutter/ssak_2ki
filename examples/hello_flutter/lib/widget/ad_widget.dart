@@ -6,7 +6,8 @@ class AdWidget extends StatelessWidget {
   final String imageUrl;
   final Color color;
 
-  const AdWidget({Key key,
+  const AdWidget({
+    Key key,
     String this.title,
     String this.subTitle,
     String this.imageUrl,
@@ -34,16 +35,22 @@ class AdWidget extends StatelessWidget {
                     title,
                     style: TextStyle(color: Colors.white, fontSize: 30),
                   ),
-                  Text(subTitle),
+                  Hero(
+                    tag: subTitle,
+                    child: Text(subTitle),
+                  ),
                 ],
               ),
             ),
           ),
           Padding(
             padding: const EdgeInsets.all(8.0),
-            child: Image.network(
-              imageUrl,
-              width: 100,
+            child: Hero(
+              tag: imageUrl,
+              child: Image.network(
+                imageUrl,
+                width: 100,
+              ),
             ),
           ),
         ],

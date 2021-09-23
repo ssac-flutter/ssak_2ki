@@ -17,6 +17,12 @@ class HomePage extends StatelessWidget {
           Text('aaaa'),
           Text('aaaa'),
           Text('aaaa'),
+          ElevatedButton(
+            onPressed: () {
+              Navigator.pop(context);
+            },
+            child: Text('뒤로 가기'),
+          ),
         ],
       ),
     );

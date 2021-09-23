@@ -1,4 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:hello_flutter/home_page.dart';
+import 'package:hello_flutter/home_page2.dart';
+import 'package:hello_flutter/model/ad.dart';
+import 'package:hello_flutter/ui/ad_detail_page.dart';
 import 'package:hello_flutter/widget/ad_widget.dart';
 import 'package:hello_flutter/widget/taxi_icon.dart';
 
@@ -17,20 +21,34 @@ class KakaoPage extends StatelessWidget {
 
   // 광고 데이터
   final _adItems = [
-    {
-      'title': '안녕하세요!!!!!!',
-      'subTitle': '빨리 끝냅시다',
-      'imageUrl':
+    Ad(
+      title: '안녕하세요!!!!!!',
+      subTitle: '빨리 끝냅시다',
+      imageUrl:
           'https://flutter.github.io/assets-for-api-docs/assets/painting/box_decoration.png',
-      'color': Colors.yellow,
-    },
-    {
-      'title': '안녕하세요',
-      'subTitle': '빨리 끝냅시다',
-      'imageUrl':
-          'https://flutter.github.io/assets-for-api-docs/assets/painting/box_decoration.png',
-      'color': Colors.green,
-    }
+      color: Colors.yellow,
+    ),
+    Ad(
+      title: '안녕하세요!!!!!!',
+      subTitle: '빨리 끝냅시다',
+      imageUrl:
+      'https://flutter.github.io/assets-for-api-docs/assets/painting/box_decoration.png',
+      color: Colors.green,
+    ),
+    // {
+    //   'title': '안녕하세요!!!!!!',
+    //   'subTitle': '빨리 끝냅시다',
+    //   'imageUrl':
+    //       'https://flutter.github.io/assets-for-api-docs/assets/painting/box_decoration.png',
+    //   'color': Colors.yellow,
+    // },
+    // {
+    //   'title': '안녕하세요',
+    //   'subTitle': '빨리 끝냅시다',
+    //   'imageUrl':
+    //       'https://flutter.github.io/assets-for-api-docs/assets/painting/box_decoration.png',
+    //   'color': Colors.green,
+    // }
   ];
 
   // 공지사항
@@ -70,7 +88,17 @@ class KakaoPage extends StatelessWidget {
         children: [
           GridView.count(
             crossAxisCount: 4,
-            children: _menuItems.map((e) => TaxiIcon(title: e)).toList(),
+            children: _menuItems.map((e) {
+              return InkWell(
+                onTap: () {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(builder: (context) => HomePage2()),
+                  );
+                },
+                child: TaxiIcon(title: e),
+              );
+            }).toList(),
             shrinkWrap: true,
             physics: NeverScrollableScrollPhysics(),
           ),
@@ -80,24 +108,42 @@ class KakaoPage extends StatelessWidget {
             child: PageView(
               scrollDirection: Axis.horizontal,
               controller: pageController,
-              children: _adItems.map((e) {
+              children: _adItems.map((Ad ad) {
                 // 작성할 것 있으면 더 작성
-                return AdWidget(
-                  title: e['title'],
-                  subTitle: e['subTitle'],
-                  imageUrl: e['imageUrl'],
-                  color: e['color'],
+                return InkWell(
+                  onTap: () async {
+                    Ad returnAd = await Navigator.push(
+                      context,
+                      MaterialPageRoute(builder: (context) => AdDetailPage(ad: ad,)),
+                    );
+
+                    print(returnAd.title);
+                  },
+                  child: AdWidget(
+                    title: ad.title,
+                    subTitle: ad.subTitle,
+                    imageUrl: ad.imageUrl,
+                    color: ad.color,
+                  ),
                 );
               }).toList(),
             ),
           ),
           // 공지
-          ..._notices.map((e) => ListTile(
-            leading: Icon(Icons.alarm),
-            title: Text(e),
-            subtitle: Text('이것은 서브!!'),
-            trailing: Icon(Icons.arrow_forward_outlined),
-          )).toList()
+          ..._notices
+              .map((e) => ListTile(
+                    leading: Icon(Icons.alarm),
+                    title: Text(e),
+                    subtitle: Text('이것은 서브!!'),
+                    trailing: Icon(Icons.arrow_forward_outlined),
+                    onTap: () {
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(builder: (context) => HomePage()),
+                      );
+                    },
+                  ))
+              .toList()
         ],
       ),
     );
