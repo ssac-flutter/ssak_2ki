@@ -19,7 +19,11 @@ class _HomePageState extends State<HomePage> {
   void initState() {
     super.initState();
 
-    fetch();
+    fetch().then((todo) {
+      setState(() {
+        _result = todo.title;
+      });
+    });
   }
 
   // initState -> ? -> ? -> build
@@ -43,22 +47,17 @@ class _HomePageState extends State<HomePage> {
     );
   }
 
-  void fetch() {
-    http
-        .get('https://jsonplaceholder.typicode.com/todos/1')
-        .then((response) {
-      print(response.statusCode);
-      print(response.body);
+  Future<Todo> fetch() async {
+    final response =
+        await http.get('https://jsonplaceholder.typicode.com/todos/1'); // 오래
 
-      Map<String, dynamic> jsonResponse = jsonDecode(response.body);
+    print(response.statusCode);
+    print(response.body);
 
-      Todo todo = Todo.fromJson(jsonResponse);
+    Map<String, dynamic> jsonResponse = jsonDecode(response.body);
 
-      print(todo.title);
+    Todo todo = Todo.fromJson(jsonResponse);
 
-      setState(() {
-        _result = todo.title;
-      });
-    });
+    return todo;
   }
 }
