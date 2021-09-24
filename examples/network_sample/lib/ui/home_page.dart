@@ -13,7 +13,7 @@ class HomePage extends StatefulWidget {
 
 class _HomePageState extends State<HomePage> {
   var _result = '';
-  var _list = '';
+  List<Todo> _list = [];
 
   // 최초에 로드 될 때 호출
   @override
@@ -28,6 +28,11 @@ class _HomePageState extends State<HomePage> {
     setState(() {
       _result = todo.title;
     });
+
+    List<Todo> todos = await fetchList();
+    setState(() {
+      _list = todos;
+    });
   }
 
   // initState -> ? -> ? -> build
@@ -37,7 +42,7 @@ class _HomePageState extends State<HomePage> {
       appBar: AppBar(
         title: const Text('네트워크 통신'),
       ),
-      body: Column(
+      body: ListView(
         children: [
           ElevatedButton(
             onPressed: () async {
@@ -53,12 +58,12 @@ class _HomePageState extends State<HomePage> {
             onPressed: () async {
               List<Todo> todos = await fetchList();
               setState(() {
-                _list = todos.toString();
+                _list = todos;
               });
             },
             child: Text('목록 가져오기'),
           ),
-          Text(_list),
+          if (_list.isEmpty) Center(child: CircularProgressIndicator()) else ..._list.map((e) => Text(e.title)).toList(),
         ],
       ),
     );
