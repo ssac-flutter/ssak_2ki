@@ -12,4 +12,9 @@ class Todo {
     title = json['title'];
     completed = json['completed'];
   }
+
+  @override
+  String toString() {
+    return 'Todo{userId: $userId, id: $id, title: $title, completed: $completed}';
+  }
 }

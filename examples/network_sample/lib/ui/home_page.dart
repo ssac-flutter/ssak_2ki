@@ -13,6 +13,7 @@ class HomePage extends StatefulWidget {
 
 class _HomePageState extends State<HomePage> {
   var _result = '';
+  var _list = '';
 
   // 최초에 로드 될 때 호출
   @override
@@ -39,12 +40,25 @@ class _HomePageState extends State<HomePage> {
       body: Column(
         children: [
           ElevatedButton(
-            onPressed: () {
-              fetch();
+            onPressed: () async {
+              Todo todo = await fetch();
+              setState(() {
+                _result = todo.title;
+              });
             },
             child: Text('가져오기'),
           ),
           Text(_result),
+          ElevatedButton(
+            onPressed: () async {
+              List<Todo> todos = await fetchList();
+              setState(() {
+                _list = todos.toString();
+              });
+            },
+            child: Text('목록 가져오기'),
+          ),
+          Text(_list),
         ],
       ),
     );
@@ -58,9 +72,18 @@ class _HomePageState extends State<HomePage> {
     print(response.body);
 
     Map<String, dynamic> jsonResponse = jsonDecode(response.body);
-
     Todo todo = Todo.fromJson(jsonResponse);
 
     return todo;
+  }
+
+  Future<List<Todo>> fetchList() async {
+    final response =
+        await http.get('https://jsonplaceholder.typicode.com/todos'); // 오래
+
+    Iterable jsonResponse = jsonDecode(response.body);
+    List<Todo> todos = jsonResponse.map((e) => Todo.fromJson(e)).toList();
+
+    return todos;
   }
 }
