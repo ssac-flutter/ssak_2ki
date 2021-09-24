@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 import 'dart:convert';
 
+import 'package:network_sample/model/todo.dart';
+
 class HomePage extends StatefulWidget {
   const HomePage({Key key}) : super(key: key);
 
@@ -49,12 +51,13 @@ class _HomePageState extends State<HomePage> {
       print(response.body);
 
       Map<String, dynamic> jsonResponse = jsonDecode(response.body);
-      String title = jsonResponse['title'];
 
-      print(title);
+      Todo todo = Todo.fromJson(jsonResponse);
+
+      print(todo.title);
 
       setState(() {
-        _result = title;
+        _result = todo.title;
       });
     });
   }
