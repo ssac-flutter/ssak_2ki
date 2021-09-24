@@ -19,10 +19,13 @@ class _HomePageState extends State<HomePage> {
   void initState() {
     super.initState();
 
-    fetch().then((todo) {
-      setState(() {
-        _result = todo.title;
-      });
+    init();
+  }
+
+  Future<void> init() async {
+    Todo todo = await fetch();
+    setState(() {
+      _result = todo.title;
     });
   }
 
