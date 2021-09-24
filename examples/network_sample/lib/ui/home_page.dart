@@ -12,6 +12,15 @@ class HomePage extends StatefulWidget {
 class _HomePageState extends State<HomePage> {
   var _result = '';
 
+  // 최초에 로드 될 때 호출
+  @override
+  void initState() {
+    super.initState();
+
+    fetch();
+  }
+
+  // initState -> ? -> ? -> build
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -22,22 +31,7 @@ class _HomePageState extends State<HomePage> {
         children: [
           ElevatedButton(
             onPressed: () {
-              http
-                  .get('https://jsonplaceholder.typicode.com/todos/1')
-                  .then((response) {
-                print(response.statusCode);
-                print(response.body);
-
-                Map<String, dynamic> jsonResponse = jsonDecode(response.body);
-                String title = jsonResponse['title'];
-
-                print(title);
-
-                setState(() {
-                  _result = title;
-                });
-
-              });
+              fetch();
             },
             child: Text('가져오기'),
           ),
@@ -45,5 +39,23 @@ class _HomePageState extends State<HomePage> {
         ],
       ),
     );
+  }
+
+  void fetch() {
+    http
+        .get('https://jsonplaceholder.typicode.com/todos/1')
+        .then((response) {
+      print(response.statusCode);
+      print(response.body);
+
+      Map<String, dynamic> jsonResponse = jsonDecode(response.body);
+      String title = jsonResponse['title'];
+
+      print(title);
+
+      setState(() {
+        _result = title;
+      });
+    });
   }
 }
