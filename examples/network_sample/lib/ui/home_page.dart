@@ -4,8 +4,13 @@ import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 import 'package:network_sample/model/todo.dart';
 
-class HomePage extends StatelessWidget {
+class HomePage extends StatefulWidget {
 
+  @override
+  State<HomePage> createState() => _HomePageState();
+}
+
+class _HomePageState extends State<HomePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -17,9 +22,9 @@ class HomePage extends StatelessWidget {
           ElevatedButton(
             onPressed: () async {
               Todo todo = await fetch();
-              // setState(() {
-                // _result = todo.title;
-              // });
+              setState(() {
+
+              });
             },
             child: Text('가져오기'),
           ),
