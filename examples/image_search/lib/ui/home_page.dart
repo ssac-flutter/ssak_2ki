@@ -12,7 +12,11 @@ class HomePage extends StatefulWidget {
 
 class _HomePageState extends State<HomePage> {
   final _controller = TextEditingController();
+
   final _api = PixabayApi();
+
+  var _result = <Hits>[];
+  var _query = '';
 
   @override
   void dispose() {
@@ -23,6 +27,12 @@ class _HomePageState extends State<HomePage> {
   @override
   void initState() {
     super.initState();
+
+    _api.getImages('iphone').then((result) {
+      setState(() {
+        _result = result;
+      });
+    });
   }
 
   @override
@@ -49,24 +59,21 @@ class _HomePageState extends State<HomePage> {
               )
             ],
           ),
-          FutureBuilder<List<Hits>>(
-            future: _api.getImages(
-                _controller.text.isEmpty ? 'iphone' : _controller.text),
-            builder: (context, snapshot) {
-              if (snapshot.hasError) {
-                return Text('에러!!!!');
-              }
-              if (snapshot.connectionState == ConnectionState.waiting) {
-                return Text('로딩 중...');
-              }
-
-              final result = snapshot.data;
-              return ListView(
-                shrinkWrap: true,
-                physics: NeverScrollableScrollPhysics(),
-                children: result.map((e) => ImageItem(hits: e)).toList(),
-              );
+          TextField(
+            onChanged: (query) {
+              setState(() {
+                _query = query;
+              });
             },
+          ),
+          ListView(
+            shrinkWrap: true,
+            physics: NeverScrollableScrollPhysics(),
+            children: _result
+                .where((e) =>
+                    e.tags.toLowerCase().contains(_query.trim().toLowerCase()))
+                .map((e) => ImageItem(hits: e))
+                .toList(),
           ),
         ],
       ),
