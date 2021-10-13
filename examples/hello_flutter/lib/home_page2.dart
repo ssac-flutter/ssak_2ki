@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 
 // stful : stf
 class HomePage2 extends StatefulWidget {
-  const HomePage2({Key key}) : super(key: key);
+  const HomePage2({Key? key}) : super(key: key);
 
   @override
   _HomePage2State createState() => _HomePage2State();

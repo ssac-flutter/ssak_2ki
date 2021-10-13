@@ -4,8 +4,8 @@ class TaxiIcon extends StatelessWidget {
   final String title;
 
   const TaxiIcon({
-    Key key,
-    @required this.title,
+    Key? key,
+    required this.title,
   }) : super(key: key);
 
   @override

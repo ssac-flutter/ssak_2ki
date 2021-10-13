@@ -7,11 +7,11 @@ class AdWidget extends StatelessWidget {
   final Color color;
 
   const AdWidget({
-    Key key,
-    String this.title,
-    String this.subTitle,
-    String this.imageUrl,
-    Color this.color,
+    Key? key,
+    required String this.title,
+    required String this.subTitle,
+    required String this.imageUrl,
+    required Color this.color,
   }) : super(key: key);
 
   @override

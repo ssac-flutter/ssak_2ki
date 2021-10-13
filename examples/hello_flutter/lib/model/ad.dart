@@ -6,5 +6,10 @@ class Ad {
   String imageUrl;
   Color color;
 
-  Ad({this.title, this.subTitle, this.imageUrl, this.color});
+  Ad({
+    required this.title,
+    required this.subTitle,
+    required this.imageUrl,
+    required this.color,
+  });
 }

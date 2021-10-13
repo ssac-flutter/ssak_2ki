@@ -4,7 +4,7 @@ import 'package:hello_flutter/home_page2.dart';
 import 'package:hello_flutter/kakao_page.dart';
 
 class TabPage extends StatefulWidget {
-  TabPage({Key key}) : super(key: key);
+  TabPage({Key? key}) : super(key: key);
 
   @override
   _TabPageState createState() => _TabPageState();

@@ -7,7 +7,7 @@ import 'package:hello_flutter/widget/ad_widget.dart';
 import 'package:hello_flutter/widget/taxi_icon.dart';
 
 class KakaoPage extends StatelessWidget {
-  KakaoPage({Key key}) : super(key: key);
+  KakaoPage({Key? key}) : super(key: key);
 
   // 데이터 (값)
   final _menuItems = [

@@ -4,7 +4,7 @@ import 'package:hello_flutter/model/ad.dart';
 class AdDetailPage extends StatelessWidget {
   final Ad ad;
 
-  const AdDetailPage({Key key, @required this.ad}) : super(key: key);
+  const AdDetailPage({Key? key, required this.ad}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
