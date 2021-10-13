@@ -1,10 +1,15 @@
 class Todo {
-  int userId;
-  int id;
-  String title;
-  bool completed;
+  late int userId;
+  late int id;
+  late String title;
+  late bool completed;
 
-  Todo({this.userId, this.id, this.title, this.completed});
+  Todo({
+    required this.userId,
+    required this.id,
+    required this.title,
+    required this.completed,
+  });
 
   Todo.fromJson(Map<String, dynamic> json) {
     userId = json['userId'];

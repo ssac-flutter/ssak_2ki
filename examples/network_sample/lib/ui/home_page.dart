@@ -43,7 +43,7 @@ class _HomePageState extends State<HomePage> {
                   return Text('데이터가 없습니다');
                 }
 
-                Todo todo = snapshot.data;
+                Todo todo = snapshot.data!;
 
                 return Text(todo.title);
               }),
@@ -72,7 +72,7 @@ class _HomePageState extends State<HomePage> {
                   return Text('데이터가 없습니다');
                 }
 
-                List<Todo> todos = snapshot.data;
+                List<Todo> todos = snapshot.data!;
 
                 return ListView(
                   shrinkWrap: true,
