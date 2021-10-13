@@ -4,7 +4,7 @@ import 'package:image_search/model/hits.dart';
 import 'package:image_search/ui/widget/image_item.dart';
 
 class HomePage extends StatefulWidget {
-  const HomePage({Key key}) : super(key: key);
+  const HomePage({Key? key}) : super(key: key);
 
   @override
   State<HomePage> createState() => _HomePageState();

@@ -4,7 +4,7 @@ import 'package:image_search/model/hits.dart';
 class ImageItem extends StatelessWidget {
   final Hits hits;
 
-  const ImageItem({Key key, @required this.hits}) : super(key: key);
+  const ImageItem({Key? key, required this.hits}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
