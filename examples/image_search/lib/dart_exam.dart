@@ -59,7 +59,9 @@ final transactions = [
 
 void main() {
   transactions.sort();
-  transactions.forEach((element) { print(element.value); });
+  transactions.forEach((element) {
+    print(element.value);
+  });
 
 // 1. 2011년에 일어난 모든 트랜잭션을 찾아 값을 오름차순으로 정리하여 나열하시오
   print('1번 ============');

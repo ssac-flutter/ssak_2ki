@@ -5,6 +5,7 @@ import 'package:http/http.dart' as http;
 import 'package:network_sample/model/todo.dart';
 
 class HomePage extends StatefulWidget {
+  const HomePage({Key? key}) : super(key: key);
 
   @override
   State<HomePage> createState() => _HomePageState();
@@ -21,26 +22,23 @@ class _HomePageState extends State<HomePage> {
         children: [
           ElevatedButton(
             onPressed: () async {
-              Todo todo = await fetch();
-              setState(() {
-
-              });
+              setState(() {});
             },
-            child: Text('가져오기'),
+            child: const Text('가져오기'),
           ),
           FutureBuilder<Todo>(
               future: fetch(),
               builder: (context, AsyncSnapshot<Todo> snapshot) {
                 if (snapshot.connectionState == ConnectionState.waiting) {
-                  return Center(child: CircularProgressIndicator());
+                  return const Center(child: CircularProgressIndicator());
                 }
 
                 if (snapshot.hasError) {
-                  return Text('에러가 발생했습니다');
+                  return const Text('에러가 발생했습니다');
                 }
 
                 if (!snapshot.hasData) {
-                  return Text('데이터가 없습니다');
+                  return const Text('데이터가 없습니다');
                 }
 
                 Todo todo = snapshot.data!;
@@ -49,34 +47,30 @@ class _HomePageState extends State<HomePage> {
               }),
           ElevatedButton(
             onPressed: () async {
-              List<Todo> todos = await fetchList();
-              // setState(() {
-                // _list = todos;
-              // });
             },
-            child: Text('목록 가져오기'),
+            child: const Text('목록 가져오기'),
           ),
           FutureBuilder<List<Todo>>(
               future: fetchList(),
-              initialData: [],
+              initialData: const [],
               builder: (context, snapshot) {
                 if (snapshot.connectionState == ConnectionState.waiting) {
-                  return Center(child: CircularProgressIndicator());
+                  return const Center(child: CircularProgressIndicator());
                 }
 
                 if (snapshot.hasError) {
-                  return Text('에러가 발생했습니다');
+                  return const Text('에러가 발생했습니다');
                 }
 
                 if (!snapshot.hasData) {
-                  return Text('데이터가 없습니다');
+                  return const Text('데이터가 없습니다');
                 }
 
                 List<Todo> todos = snapshot.data!;
 
                 return ListView(
                   shrinkWrap: true,
-                  physics: NeverScrollableScrollPhysics(),
+                  physics: const NeverScrollableScrollPhysics(),
                   children: todos.map((e) => Text(e.title)).toList(),
                 );
               }),

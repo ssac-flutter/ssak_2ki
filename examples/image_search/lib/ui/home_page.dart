@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:image_search/data/pixabayApi.dart';
+import 'package:image_search/data/pixabay_api.dart';
 import 'package:image_search/model/hits.dart';
 import 'package:image_search/ui/widget/image_item.dart';
 
@@ -55,7 +55,7 @@ class _HomePageState extends State<HomePage> {
                   setState(() {});
                   FocusScope.of(context).unfocus();
                 },
-                child: Text('검색'),
+                child: const Text('검색'),
               )
             ],
           ),
@@ -68,7 +68,7 @@ class _HomePageState extends State<HomePage> {
           ),
           ListView(
             shrinkWrap: true,
-            physics: NeverScrollableScrollPhysics(),
+            physics: const NeverScrollableScrollPhysics(),
             children: _result
                 .where((e) =>
                     e.tags.toLowerCase().contains(_query.trim().toLowerCase()))
