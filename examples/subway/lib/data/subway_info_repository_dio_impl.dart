@@ -1,4 +1,5 @@
 import 'package:dio/dio.dart';
+import 'package:subway/data/result.dart';
 import 'package:subway/data/subway_info_repository.dart';
 import 'package:subway/model/subway_info.dart';
 
@@ -9,9 +10,14 @@ class SubwayInfoRepositoryDioImpl implements SubwayInfoRepository {
   final dio = Dio();
 
   @override
-  Future<List<SubwayInfo>> fetch(String stationName) async {
-    final response = await dio.get('$baseUrl/$stationName');
-    Iterable itemsJson = response.data['realtimeArrivalList'];
-    return itemsJson.map((e) => SubwayInfo.fromJson(e)).toList();
+  Future<Result> fetch(String stationName) async {
+    try {
+      final response = await dio.get('$baseUrl/$stationName');
+      Iterable itemsJson = response.data['realtimeArrivalList'];
+      return Result.success(
+          itemsJson.map((e) => SubwayInfo.fromJson(e)).toList());
+    } catch (e) {
+      return Result.error(InvalidSubwayInfoException('네트워크 에러'));
+    }
   }
 }

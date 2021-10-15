@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:subway/data/subway_info_repository_dio_impl.dart';
-import 'package:subway/data/subway_info_repository_impl.dart';
+import 'package:provider/provider.dart';
 import 'package:subway/model/subway_info.dart';
+import 'package:subway/viewmodel/main_view_model.dart';
 
 class MainScreen extends StatefulWidget {
   const MainScreen({Key? key}) : super(key: key);
@@ -11,18 +11,22 @@ class MainScreen extends StatefulWidget {
 }
 
 class _MainScreenState extends State<MainScreen> {
-  // final _repository = SubwayInfoRepositoryImpl();
-  final _repository = SubwayInfoRepositoryDioImpl();
   final _textController = TextEditingController();
-
-  List<SubwayInfo> _items = [];
 
   @override
   void initState() {
     super.initState();
 
-    _repository.fetch("수원").then((value) {
-      print(value);
+    context.read<MainViewModel>().eventStream.listen((event) {
+      if (event is ShowSnackBar) {
+        final snackBar = SnackBar(
+          content: Text(event.message),
+        );
+
+        WidgetsBinding.instance?.addPostFrameCallback((_) {
+          ScaffoldMessenger.of(context).showSnackBar(snackBar);
+        });
+      }
     });
   }
 
@@ -34,6 +38,10 @@ class _MainScreenState extends State<MainScreen> {
 
   @override
   Widget build(BuildContext context) {
+    final viewModel = context.watch<MainViewModel>();
+    final isLoading = viewModel.state.isLoading;
+    final items = viewModel.state.items;
+
     return Scaffold(
       appBar: AppBar(
         title: const Text('지하철 실시간 정보 앱'),
@@ -48,37 +56,38 @@ class _MainScreenState extends State<MainScreen> {
                 ),
               ),
               ElevatedButton(
-                onPressed: () async {
-                  _items = await _repository.fetch(_textController.text);
-
-                  setState(() {});
+                onPressed: () {
+                  viewModel.fetch(_textController.text);
                 },
                 child: const Text('검색'),
               ),
             ],
           ),
           Expanded(
-            child: GridView.builder(
-              itemCount: _items.length,
-              gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-                crossAxisCount: 2,
-              ),
-              itemBuilder: (BuildContext context, int index) {
-                SubwayInfo subwayInfo = _items[index];
-                return Card(
-                  color: Colors.amber,
-                  child: Column(
-                    children: [
-                      Text(subwayInfo.trainLineNm),
-                      Text(subwayInfo.subwayHeading),
-                      Text(subwayInfo.arvlMsg2),
-                      Text(subwayInfo.arvlMsg3),
-                      Text(subwayInfo.recptnDt),
-                    ],
+            child: isLoading
+                ? const CircularProgressIndicator()
+                : GridView.builder(
+                    itemCount: items.length,
+                    gridDelegate:
+                        const SliverGridDelegateWithFixedCrossAxisCount(
+                      crossAxisCount: 2,
+                    ),
+                    itemBuilder: (BuildContext context, int index) {
+                      SubwayInfo subwayInfo = items[index];
+                      return Card(
+                        color: Colors.amber,
+                        child: Column(
+                          children: [
+                            Text(subwayInfo.trainLineNm),
+                            Text(subwayInfo.subwayHeading),
+                            Text(subwayInfo.arvlMsg2),
+                            Text(subwayInfo.arvlMsg3),
+                            Text(subwayInfo.recptnDt),
+                          ],
+                        ),
+                      );
+                    },
                   ),
-                );
-              },
-            ),
           ),
         ],
       ),

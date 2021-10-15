@@ -23,3 +23,14 @@ class SubwayInfo {
 
   Map<String, dynamic> toJson() => _$SubwayInfoToJson(this);
 }
+
+class InvalidSubwayInfoException implements Exception {
+  final String message;
+
+  InvalidSubwayInfoException(this.message);
+
+  @override
+  String toString() {
+    return 'InvalidSubwayInfoException{message: $message}';
+  }
+}

@@ -1,5 +1,5 @@
-import 'package:subway/model/subway_info.dart';
+import 'package:subway/data/result.dart';
 
 abstract class SubwayInfoRepository {
-  Future<List<SubwayInfo>> fetch(String stationName);
+  Future<Result> fetch(String stationName);
 }
