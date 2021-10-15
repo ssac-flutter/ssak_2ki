@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:subway/data/subway_info_repository_dio_impl.dart';
 import 'package:subway/data/subway_info_repository_impl.dart';
 import 'package:subway/model/subway_info.dart';
 
@@ -10,7 +11,8 @@ class MainScreen extends StatefulWidget {
 }
 
 class _MainScreenState extends State<MainScreen> {
-  final _repository = SubwayInfoRepositoryImpl();
+  // final _repository = SubwayInfoRepositoryImpl();
+  final _repository = SubwayInfoRepositoryDioImpl();
   final _textController = TextEditingController();
 
   List<SubwayInfo> _items = [];
