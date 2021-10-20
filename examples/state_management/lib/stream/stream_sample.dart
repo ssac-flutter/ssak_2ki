@@ -1,19 +1,16 @@
 import 'package:flutter/material.dart';
 import 'package:state_management/stream/counter_inherited_widget.dart';
 
-class StreamSample extends StatefulWidget {
+class StreamSample extends StatelessWidget {
   const StreamSample({Key? key}) : super(key: key);
 
   @override
-  State<StreamSample> createState() => _StreamSampleState();
-}
-
-class _StreamSampleState extends State<StreamSample> {
-  @override
   Widget build(BuildContext context) {
+    final counter = CounterInheritedWidget.of(context).counter;
+
     return Scaffold(
       appBar: AppBar(
-        title: const Text('InheritedWidgetSample'),
+        title: const Text('StreamSample'),
       ),
       body: Container(
         color: Colors.white,
@@ -21,49 +18,21 @@ class _StreamSampleState extends State<StreamSample> {
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              Text('${CounterInheritedWidget.of(context).counter.count}'),
+              StreamBuilder<int>(
+                  initialData: 0,
+                  stream: counter.countStream,
+                  builder: (context, snapshot) {
+                    return Text('${snapshot.data!}');
+                  }),
               ElevatedButton(
                 onPressed: () {
-                  setState(() {
-                    CounterInheritedWidget.of(context).counter.count++;
-                  });
+                  counter.increment();
                 },
                 child: const Text('클릭!!'),
-              ),
-              ElevatedButton(
-                onPressed: () {
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                      builder: (innerContext) => NextPage(
-                          count:
-                              CounterInheritedWidget.of(context).counter.count),
-                    ),
-                  );
-                },
-                child: const Text('다음 화면'),
               ),
             ],
           ),
         ),
-      ),
-    );
-  }
-}
-
-class NextPage extends StatelessWidget {
-  final int count;
-
-  const NextPage({Key? key, required this.count}) : super(key: key);
-
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: const Text(''),
-      ),
-      body: Center(
-        child: Text('$count'),
       ),
     );
   }
