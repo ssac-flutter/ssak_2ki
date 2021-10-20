@@ -20,8 +20,9 @@ void main() {
         isA<int>(),
         isA<int>(),
         isA<int>(),
-        isA<int>(),
       ]),
     );
+
+    viewModel.dispose();
   });
 }
