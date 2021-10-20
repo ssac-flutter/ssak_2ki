@@ -10,9 +10,4 @@ import Flutter
     GeneratedPluginRegistrant.register(with: self)
     return super.application(application, didFinishLaunchingWithOptions: launchOptions)
   }
-    
-    private func receiveBatteryLevel(result: FlutterResult) {
-        let device = UIDevice.current
-      
-    }
 }
