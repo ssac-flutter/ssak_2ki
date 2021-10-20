@@ -2,8 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:state_management/inherited_widget/my_color.dart';
 import 'package:state_management/stream/counter.dart';
 import 'package:state_management/stream/counter_inherited_widget.dart';
+import 'package:state_management/stream/counter_view_model_inherited_widget.dart';
 import 'package:state_management/stream/inherited_sample_2.dart';
 import 'package:state_management/stream/stream_sample.dart';
+import 'package:state_management/stream/stream_sample_view_model.dart';
 
 void main() {
   runApp(const MyColor(
@@ -23,9 +25,9 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
-      home: CounterInheritedWidget(
-        counter: Counter(),
-        child: StreamSample(),
+      home: CounterViewModelInheritedWidget(
+        viewModel: StreamSampleViewModel(),
+        child: const StreamSample(),
       ),
     );
   }

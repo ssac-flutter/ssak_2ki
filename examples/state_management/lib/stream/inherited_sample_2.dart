@@ -21,7 +21,7 @@ class _InheritedSample2State extends State<InheritedSample2> {
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              Text('${CounterInheritedWidget.of(context).counter.countStream}'),
+              Text('${CounterInheritedWidget.of(context).counter.count}'),
               ElevatedButton(
                 onPressed: () {
                   setState(() {
