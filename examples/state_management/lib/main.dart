@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:state_management/inherited_widget/inherited_widget_sample.dart';
 import 'package:state_management/inherited_widget/my_color.dart';
+import 'package:state_management/stream/counter.dart';
+import 'package:state_management/stream/counter_inherited_widget.dart';
+import 'package:state_management/stream/stream_sample.dart';
 
 void main() {
   runApp(const MyColor(
@@ -20,9 +22,9 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
-      home: const MyColor(
-        color: Colors.black,
-        child: InheritedWidgetSample(),
+      home: CounterInheritedWidget(
+        counter: Counter(),
+        child: const StreamSample(),
       ),
     );
   }
