@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:image_search/data/pixabay_api.dart';
 import 'package:image_search/model/hits.dart';
+import 'package:image_search/ui/home_view_model.dart';
 import 'package:image_search/ui/widget/image_item.dart';
 
 class HomePage extends StatefulWidget {
@@ -11,9 +11,10 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
+  final viewModel = HomeViewModel();
+
   final _controller = TextEditingController();
 
-  final _api = PixabayApi();
 
   var _result = <Hits>[];
   var _query = '';
@@ -28,7 +29,7 @@ class _HomePageState extends State<HomePage> {
   void initState() {
     super.initState();
 
-    _api.getImages('iphone').then((result) {
+    viewModel.getImage('iPhone').then((result) {
       setState(() {
         _result = result;
       });
