@@ -7,7 +7,6 @@ class MyHomePage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final viewModel = Provider.of<HomeViewModel>(context);
     return Scaffold(
       appBar: AppBar(
         title: const Text('title'),
@@ -19,15 +18,21 @@ class MyHomePage extends StatelessWidget {
             const Text(
               'You have pushed the button this many times:',
             ),
-            Text(
-              '${viewModel.count}',
-              style: Theme.of(context).textTheme.headline4,
+            Consumer<HomeViewModel>(
+              builder: (_, viewModel, child) {
+                return Text(
+                  '${viewModel.count}',
+                  style: Theme.of(context).textTheme.headline4,
+                );
+              },
             ),
           ],
         ),
       ),
       floatingActionButton: FloatingActionButton(
-        onPressed: () => viewModel.increase(),
+        onPressed: () {
+          Provider.of<HomeViewModel>(context, listen: false).increase();
+        },
         tooltip: 'Increment',
         child: const Icon(Icons.add),
       ), // This trailing comma makes auto-formatting nicer for build methods.
