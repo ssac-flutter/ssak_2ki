@@ -7,6 +7,8 @@ class MyHomePage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    // final viewModel = Provider.of<HomeViewModel>(context);
+    final viewModel = context.watch<HomeViewModel>();
     return Scaffold(
       appBar: AppBar(
         title: const Text('title'),
@@ -18,20 +20,18 @@ class MyHomePage extends StatelessWidget {
             const Text(
               'You have pushed the button this many times:',
             ),
-            Consumer<HomeViewModel>(
-              builder: (_, viewModel, child) {
-                return Text(
-                  '${viewModel.count}',
-                  style: Theme.of(context).textTheme.headline4,
-                );
-              },
+            Text(
+              '${viewModel.count}',
+              style: Theme.of(context).textTheme.headline4,
             ),
           ],
         ),
       ),
       floatingActionButton: FloatingActionButton(
         onPressed: () {
-          Provider.of<HomeViewModel>(context, listen: false).increase();
+          // Provider.of<HomeViewModel>(context, listen: false).increase();
+          // context.read<HomeViewModel>().increase();
+          viewModel.increase();
         },
         tooltip: 'Increment',
         child: const Icon(Icons.add),

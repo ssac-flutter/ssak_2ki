@@ -1,9 +1,11 @@
 
 import 'package:flutter/material.dart';
-import 'package:provider_sample/data/counter.dart';
+import 'package:provider_sample/data/counter_repository.dart';
 
 class HomeViewModel with ChangeNotifier {
-  final counter = Counter();
+  final CounterRepository counter;
+
+  HomeViewModel(this.counter);
 
   int get count => counter.count;
 

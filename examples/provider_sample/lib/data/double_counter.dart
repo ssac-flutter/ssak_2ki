@@ -1,6 +1,6 @@
 import 'package:provider_sample/data/counter_repository.dart';
 
-class Counter implements CounterRepository {
+class DoubleCounter implements CounterRepository {
   int _count = 0;
 
   @override
@@ -8,6 +8,6 @@ class Counter implements CounterRepository {
 
   @override
   void increase() {
-    _count++;
+    _count = _count + 2;
   }
 }
