@@ -19,14 +19,10 @@ class MyHomePage extends StatelessWidget {
             const Text(
               'You have pushed the button this many times:',
             ),
-            StreamBuilder<int>(
-                stream: viewModel.countStream,
-                builder: (context, snapshot) {
-                  return Text(
-                    '${viewModel.count}',
-                    style: Theme.of(context).textTheme.headline4,
-                  );
-                }),
+            Text(
+              '${viewModel.count}',
+              style: Theme.of(context).textTheme.headline4,
+            ),
           ],
         ),
       ),
