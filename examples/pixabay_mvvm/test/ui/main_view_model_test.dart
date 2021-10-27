@@ -20,10 +20,10 @@ void main() {
       .thenAnswer((realInvocation) async => testPhotoList);
 
     // 실행
-    final result = await viewModel.fetch('iphone');
+    await viewModel.fetch('iphone');
 
     // 확인
-    expect(result.length, min(testPhotoList.length, 10));
+    expect(viewModel.photos.length, min(testPhotoList.length, 10));
 
     // 검증
     verify(repository.getPhotos('iphone'));
