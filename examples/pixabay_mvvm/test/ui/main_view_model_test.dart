@@ -17,22 +17,62 @@ void main() {
 
     // 가정
     when(repository.getPhotos('iphone'))
-      .thenAnswer((realInvocation) async => testPhotoList);
-
+      .thenAnswer((realInvocation) async => test10PhotoList);
     // 실행
     await viewModel.fetch('iphone');
-
     // 확인
-    expect(viewModel.photos.length, min(testPhotoList.length, 10));
+    expect(viewModel.photos.length, 10);
+    // 검증
+    verify(repository.getPhotos('iphone'));
 
+    // 가정
+    when(repository.getPhotos('iphone'))
+        .thenAnswer((realInvocation) async => test9PhotoList);
+    // 실행
+    await viewModel.fetch('iphone');
+    // 확인
+    expect(viewModel.photos.length, 9);
+    // 검증
+    verify(repository.getPhotos('iphone'));
+
+    // 가정
+    when(repository.getPhotos('iphone'))
+        .thenAnswer((realInvocation) async => test11PhotoList);
+    // 실행
+    await viewModel.fetch('iphone');
+    // 확인
+    expect(viewModel.photos.length, 10);
     // 검증
     verify(repository.getPhotos('iphone'));
   });
 }
 
-final testPhotoList = [
+final test10PhotoList = [
   Photo('test', 'http://aaa'),
   Photo('test', 'http://aaa'),
+  Photo('test', 'http://aaa'),
+  Photo('test', 'http://aaa'),
+  Photo('test', 'http://aaa'),
+  Photo('test', 'http://aaa'),
+  Photo('test', 'http://aaa'),
+  Photo('test', 'http://aaa'),
+  Photo('test', 'http://aaa'),
+  Photo('test', 'http://aaa'),
+];
+
+final test9PhotoList = [
+  Photo('test', 'http://aaa'),
+  Photo('test', 'http://aaa'),
+  Photo('test', 'http://aaa'),
+  Photo('test', 'http://aaa'),
+  Photo('test', 'http://aaa'),
+  Photo('test', 'http://aaa'),
+  Photo('test', 'http://aaa'),
+  Photo('test', 'http://aaa'),
+  Photo('test', 'http://aaa'),
+];
+
+final test11PhotoList = [
   Photo('test', 'http://aaa'),
   Photo('test', 'http://aaa'),
   Photo('test', 'http://aaa'),
