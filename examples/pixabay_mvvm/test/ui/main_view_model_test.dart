@@ -11,10 +11,10 @@ import 'main_view_model_test.mocks.dart';
 
 @GenerateMocks([PhotoRepository])
 void main() {
-  test('가져오는 사진 정보는 10개여야 한다', () async {
-    final repository = MockPhotoRepository();
-    final viewModel = MainViewModel(repository);
+  final repository = MockPhotoRepository();
+  final viewModel = MainViewModel(repository);
 
+  test('가져오는 사진 정보는 10개 이하여야 한다', () async {
     // 가정
     when(repository.getPhotos('iphone'))
       .thenAnswer((realInvocation) async => test10PhotoList);
@@ -85,49 +85,3 @@ final test11PhotoList = [
   Photo('test', 'http://aaa'),
   Photo('test', 'http://aaa'),
 ];
-
-
-const testResults = """
-[
-  {
-    "previewURL": "http://aaa",
-    "tags": "test"
-  },
-  {
-    "previewURL": "http://aaa",
-    "tags": "test"
-  },
-  {
-    "previewURL": "http://aaa",
-    "tags": "test"
-  },
-  {
-    "previewURL": "http://aaa",
-    "tags": "test"
-  },
-  {
-    "previewURL": "http://aaa",
-    "tags": "test"
-  },
-  {
-    "previewURL": "http://aaa",
-    "tags": "test"
-  },
-  {
-    "previewURL": "http://aaa",
-    "tags": "test"
-  },
-  {
-    "previewURL": "http://aaa",
-    "tags": "test"
-  },
-  {
-    "previewURL": "http://aaa",
-    "tags": "test"
-  },
-  {
-    "previewURL": "http://aaa",
-    "tags": "test"
-  },
-]
-""";
