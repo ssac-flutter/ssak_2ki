@@ -2,7 +2,9 @@ import 'package:flutter_test/flutter_test.dart';
 import 'package:http/http.dart' as http;
 import 'package:mockito/annotations.dart';
 import 'package:mockito/mockito.dart';
+import 'package:pixabay_mvvm/data/photo_repository.dart';
 import 'package:pixabay_mvvm/data/pixabay_photo_repository_impl.dart';
+import 'package:pixabay_mvvm/model/photo.dart';
 
 import 'pixabay_photo_repository_impl_test.mocks.dart';
 
@@ -24,6 +26,10 @@ void main() {
 
     verify(client.get(Uri.parse(
         '${PixabayPhotoRepositoryImpl.baseUrl}?key=17828481-17c071c7f8eadf406822fada3&q=iphone&image_type=photo')));
+  });
+
+  test('pixabay 데이터를 잘 가져와야 한다 2', () async {
+
   });
 }
 
