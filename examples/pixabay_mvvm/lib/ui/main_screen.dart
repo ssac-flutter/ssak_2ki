@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:pixabay_mvvm/model/photo.dart';
 import 'package:pixabay_mvvm/ui/main_view_model.dart';
+import 'package:pixabay_mvvm/ui/ui_event.dart';
 import 'package:provider/provider.dart';
 
 class MainScreen extends StatefulWidget {
@@ -13,7 +14,16 @@ class MainScreen extends StatefulWidget {
 class _MainScreenState extends State<MainScreen> {
   @override
   void initState() {
-    Future.microtask(() => context.read<MainViewModel>().fetch('iphone'));
+    Future.microtask(() {
+      context.read<MainViewModel>().fetch('iphone');
+
+      final subscription = context.read<MainViewModel>().eventStream.listen((event) {
+        if (event is ShowSnackBar) {
+          final snackBar = SnackBar(content: Text(event.message));
+          ScaffoldMessenger.of(context).showSnackBar(snackBar);
+        }
+      });
+    });
     super.initState();
   }
 

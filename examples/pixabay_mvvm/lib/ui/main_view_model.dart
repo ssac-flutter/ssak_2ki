@@ -1,3 +1,4 @@
+import 'dart:async';
 import 'dart:math';
 
 import 'package:flutter/material.dart';
@@ -6,6 +7,7 @@ import 'package:pixabay_mvvm/data/pixabay_photo_repository_impl.dart';
 import 'package:pixabay_mvvm/data/result.dart';
 import 'package:pixabay_mvvm/model/photo.dart';
 import 'package:pixabay_mvvm/ui/photo_state.dart';
+import 'package:pixabay_mvvm/ui/ui_event.dart';
 
 class MainViewModel with ChangeNotifier {
   PhotoRepository repository;
@@ -16,14 +18,17 @@ class MainViewModel with ChangeNotifier {
 
   MainViewModel(this.repository);
 
+  final _eventController = StreamController<UiEvent>();
+  Stream<UiEvent> get eventStream => _eventController.stream;
+
   Future<void> fetch(String query) async {
     _state = state.copyWith(isLoading: true);
     notifyListeners();
 
     final Result<List<Photo>> results = await repository.getPhotos(query);
 
-    if (results is Success) {
-      final photos = (results as Success<List<Photo>>).data;
+    if (results is Success<List<Photo>>) {
+      final photos = results.data;
       _state = state.copyWith(
         photos: photos
             .getRange(
@@ -37,11 +42,10 @@ class MainViewModel with ChangeNotifier {
     } else if (results is Error) {
       if ((results as Error).e is IllegalStateException) {
         print('내가 뭔가 큰실수 했구나');
+        _eventController.add(UiEvent.showSnackBar('네트워크 에러가 발생했습니다'));
       } else {
         print((results as Error).e.toString());
       }
     }
-
-
   }
 }
