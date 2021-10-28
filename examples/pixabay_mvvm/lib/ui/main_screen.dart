@@ -28,7 +28,8 @@ class _MainScreenState extends State<MainScreen> {
   @override
   Widget build(BuildContext context) {
     final viewModel = context.watch<MainViewModel>();
-    List<Photo> photos = viewModel.photos;
+    final state = viewModel.state;
+    List<Photo> photos = state.photos;
 
     return Scaffold(
       appBar: AppBar(
@@ -66,7 +67,7 @@ class _MainScreenState extends State<MainScreen> {
           const SizedBox(
             height: 16,
           ),
-          viewModel.isLoading
+          state.isLoading
               ? const Center(child: CircularProgressIndicator())
               : Expanded(
             child: GridView(
