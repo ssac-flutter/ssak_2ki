@@ -1,12 +1,13 @@
 import 'package:flutter/material.dart';
-import 'package:pixabay_mvvm/data/fake_photo_repository_impl.dart';
+import 'package:http/http.dart' as http;
+import 'package:pixabay_mvvm/data/pixabay_photo_repository_impl.dart';
 import 'package:pixabay_mvvm/ui/main_screen.dart';
 import 'package:pixabay_mvvm/ui/main_view_model.dart';
 import 'package:provider/provider.dart';
 
 void main() {
-  // final repository = PixabayPhotoRepositoryImpl(http.Client());
-  final repository = FakePhotoRepositoryImpl();
+  final repository = PixabayPhotoRepositoryImpl(http.Client());
+  // final repository = FakePhotoRepositoryImpl();
   runApp(
     MultiProvider(
       providers: [
