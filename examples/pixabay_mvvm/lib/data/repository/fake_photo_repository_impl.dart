@@ -1,6 +1,6 @@
-import 'package:pixabay_mvvm/data/photo_repository.dart';
-import 'package:pixabay_mvvm/data/result.dart';
-import 'package:pixabay_mvvm/model/photo.dart';
+import 'package:pixabay_mvvm/domain/repository/photo_repository.dart';
+import 'package:pixabay_mvvm/domain/repository/result.dart';
+import 'package:pixabay_mvvm/domain/model/photo.dart';
 
 class FakePhotoRepositoryImpl implements PhotoRepository {
   @override

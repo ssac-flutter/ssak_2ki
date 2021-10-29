@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:pixabay_mvvm/model/photo.dart';
-import 'package:pixabay_mvvm/ui/main_view_model.dart';
-import 'package:pixabay_mvvm/ui/ui_event.dart';
+import 'package:pixabay_mvvm/domain/model/photo.dart';
+import 'package:pixabay_mvvm/presentation/main/main_view_model.dart';
+import 'package:pixabay_mvvm/presentation/main/ui_event.dart';
 import 'package:provider/provider.dart';
 
 class MainScreen extends StatefulWidget {

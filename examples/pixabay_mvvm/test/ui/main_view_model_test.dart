@@ -3,7 +3,7 @@ import 'dart:math';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mockito/annotations.dart';
 import 'package:mockito/mockito.dart';
-import 'package:pixabay_mvvm/data/photo_repository.dart';
+import 'package:pixabay_mvvm/domain/repository/photo_repository.dart';
 import 'package:pixabay_mvvm/model/photo.dart';
 import 'package:pixabay_mvvm/ui/main_view_model.dart';
 
