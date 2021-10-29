@@ -18,10 +18,13 @@ class _MainScreenState extends State<MainScreen> {
       context.read<MainViewModel>().fetch('iphone');
 
       final subscription = context.read<MainViewModel>().eventStream.listen((event) {
-        if (event is ShowSnackBar) {
-          final snackBar = SnackBar(content: Text(event.message));
+        event.when(showSnackBar: (message) {
+          final snackBar = SnackBar(content: Text(message));
           ScaffoldMessenger.of(context).showSnackBar(snackBar);
-        }
+        }, endLoading: () {
+          const snackBar = SnackBar(content: Text('로딩이 완료되었습니다'));
+          ScaffoldMessenger.of(context).showSnackBar(snackBar);
+        });
       });
     });
     super.initState();

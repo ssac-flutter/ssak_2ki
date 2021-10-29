@@ -1,17 +1,12 @@
-abstract class Result<T> {
-  factory Result.success(T data) = Success;
+import 'package:freezed_annotation/freezed_annotation.dart';
 
-  factory Result.error(Exception e) = Error;
-}
+part 'result.freezed.dart';
 
-class Success<T> implements Result<T> {
-  final T data;
+@freezed
+abstract class Result<T> with _$Result<T> {
+  const factory Result.success(T data) = Success;
 
-  Success(this.data);
-}
+  const factory Result.error(Exception e) = Error;
 
-class Error<T> implements Result<T> {
-  final Exception e;
-
-  Error(this.e);
+  const factory Result.loading(bool isLoading) = Loading;
 }

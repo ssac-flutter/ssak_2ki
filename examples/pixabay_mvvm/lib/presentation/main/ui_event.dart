@@ -1,9 +1,9 @@
-abstract class UiEvent {
-  factory UiEvent.showSnackBar(String message) = ShowSnackBar;
-}
+import 'package:freezed_annotation/freezed_annotation.dart';
 
-class ShowSnackBar implements UiEvent {
-  final String message;
+part 'ui_event.freezed.dart';
 
-  ShowSnackBar(this.message);
+@freezed
+abstract class UiEvent with _$UiEvent {
+  const factory UiEvent.showSnackBar(String message) = ShowSnackBar;
+  const factory UiEvent.endLoading() = EndLoading;
 }

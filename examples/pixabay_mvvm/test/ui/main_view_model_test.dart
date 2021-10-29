@@ -3,9 +3,9 @@ import 'dart:math';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mockito/annotations.dart';
 import 'package:mockito/mockito.dart';
+import 'package:pixabay_mvvm/domain/model/photo.dart';
 import 'package:pixabay_mvvm/domain/repository/photo_repository.dart';
-import 'package:pixabay_mvvm/model/photo.dart';
-import 'package:pixabay_mvvm/ui/main_view_model.dart';
+import 'package:pixabay_mvvm/presentation/main/main_view_model.dart';
 
 import 'main_view_model_test.mocks.dart';
 
@@ -21,7 +21,7 @@ void main() {
     // 실행
     await viewModel.fetch('iphone');
     // 확인
-    expect(viewModel.photos.length, 10);
+    expect(viewModel.state.photos.length, 10);
     // 검증
     verify(repository.getPhotos('iphone'));
 
@@ -31,7 +31,7 @@ void main() {
     // 실행
     await viewModel.fetch('iphone');
     // 확인
-    expect(viewModel.photos.length, 9);
+    expect(viewModel.state.photos.length, 9);
     // 검증
     verify(repository.getPhotos('iphone'));
 
@@ -41,7 +41,7 @@ void main() {
     // 실행
     await viewModel.fetch('iphone');
     // 확인
-    expect(viewModel.photos.length, 10);
+    expect(viewModel.state.photos.length, 10);
     // 검증
     verify(repository.getPhotos('iphone'));
   });
