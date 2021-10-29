@@ -2,10 +2,10 @@ import 'dart:async';
 import 'dart:math';
 
 import 'package:flutter/material.dart';
-import 'package:pixabay_mvvm/data/data_source/pixabay_api.dart';
+import 'package:pixabay_mvvm/data/data_source/exceptions.dart';
+import 'package:pixabay_mvvm/domain/model/photo.dart';
 import 'package:pixabay_mvvm/domain/repository/photo_repository.dart';
 import 'package:pixabay_mvvm/domain/repository/result.dart';
-import 'package:pixabay_mvvm/domain/model/photo.dart';
 import 'package:pixabay_mvvm/presentation/main/photo_state.dart';
 import 'package:pixabay_mvvm/presentation/main/ui_event.dart';
 

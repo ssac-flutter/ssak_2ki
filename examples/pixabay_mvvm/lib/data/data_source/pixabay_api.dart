@@ -3,6 +3,8 @@ import 'dart:convert';
 import 'package:http/http.dart' as http;
 import 'package:pixabay_mvvm/domain/model/photo.dart';
 
+import 'exceptions.dart';
+
 class PixabayApi {
   final http.Client client;
   static const baseUrl = 'https://pixabay.com/api/';
@@ -20,17 +22,5 @@ class PixabayApi {
     } catch (e) {
       throw IllegalStateException('네트워크 에러');
     }
-  }
-}
-
-
-class IllegalStateException implements Exception {
-  final String message;
-
-  IllegalStateException(this.message);
-
-  @override
-  String toString() {
-    return 'IllegalStateException{message: $message}';
   }
 }
