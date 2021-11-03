@@ -5,10 +5,10 @@ import 'package:pixabay_mvvm/domain/model/photo.dart';
 import 'package:pixabay_mvvm/domain/repository/photo_repository.dart';
 import 'package:pixabay_mvvm/domain/repository/result.dart';
 
-class GetPhotos extends UseCase<Result<List<Photo>>, String> {
+class GetPhotosUseCase extends UseCase<Result<List<Photo>>, String> {
   PhotoRepository repository;
 
-  GetPhotos(this.repository);
+  GetPhotosUseCase(this.repository);
 
   @override
   Future<Result<List<Photo>>> call(String params) async {

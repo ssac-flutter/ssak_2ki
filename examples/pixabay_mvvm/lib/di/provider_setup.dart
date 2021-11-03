@@ -2,7 +2,7 @@ import 'package:pixabay_mvvm/data/data_source/api.dart';
 import 'package:pixabay_mvvm/data/data_source/network/pixabay_dio_api.dart';
 import 'package:pixabay_mvvm/data/repository/pixabay_photo_repository_impl.dart';
 import 'package:pixabay_mvvm/domain/repository/photo_repository.dart';
-import 'package:pixabay_mvvm/domain/use_case/get_photos.dart';
+import 'package:pixabay_mvvm/domain/use_case/get_photos_use_case.dart';
 import 'package:pixabay_mvvm/domain/use_case/main_use_cases.dart';
 import 'package:pixabay_mvvm/presentation/main/main_view_model.dart';
 import 'package:provider/provider.dart';
@@ -29,7 +29,7 @@ List<SingleChildWidget> dependentModels = [
   ),
   ProxyProvider<PhotoRepository, MainUseCases>(
     update: (context, repository, _) =>
-        MainUseCases(getPhotos: GetPhotos(repository)),
+        MainUseCases(getPhotos: GetPhotosUseCase(repository)),
   ),
 ];
 

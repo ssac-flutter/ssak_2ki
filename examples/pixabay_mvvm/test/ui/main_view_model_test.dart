@@ -5,7 +5,7 @@ import 'package:mockito/mockito.dart';
 import 'package:pixabay_mvvm/domain/model/photo.dart';
 import 'package:pixabay_mvvm/domain/repository/photo_repository.dart';
 import 'package:pixabay_mvvm/domain/repository/result.dart';
-import 'package:pixabay_mvvm/domain/use_case/get_photos.dart';
+import 'package:pixabay_mvvm/domain/use_case/get_photos_use_case.dart';
 import 'package:pixabay_mvvm/domain/use_case/main_use_cases.dart';
 import 'package:pixabay_mvvm/presentation/main/main_view_model.dart';
 
@@ -14,7 +14,7 @@ import 'main_view_model_test.mocks.dart';
 @GenerateMocks([PhotoRepository])
 void main() {
   final repository = MockPhotoRepository();
-  final useCases = MainUseCases(getPhotos: GetPhotos(repository));
+  final useCases = MainUseCases(getPhotos: GetPhotosUseCase(repository));
   final viewModel = MainViewModel(useCases);
 
   test('가져오는 사진 정보는 10개 이하여야 한다', () async {
