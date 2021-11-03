@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:pixabay_mvvm/domain/model/photo.dart';
 import 'package:pixabay_mvvm/presentation/main/main_view_model.dart';
-import 'package:pixabay_mvvm/presentation/main/ui_event.dart';
 import 'package:provider/provider.dart';
 
 class MainScreen extends StatefulWidget {
@@ -17,7 +16,7 @@ class _MainScreenState extends State<MainScreen> {
     Future.microtask(() {
       context.read<MainViewModel>().fetch('iphone');
 
-      final subscription = context.read<MainViewModel>().eventStream.listen((event) {
+      context.read<MainViewModel>().eventStream.listen((event) {
         event.when(showSnackBar: (message) {
           final snackBar = SnackBar(content: Text(message));
           ScaffoldMessenger.of(context).showSnackBar(snackBar);

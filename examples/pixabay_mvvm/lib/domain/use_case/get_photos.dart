@@ -11,8 +11,8 @@ class GetPhotos extends UseCase<Result<List<Photo>>, String> {
   GetPhotos(this.repository);
 
   @override
-  Future<Result<List<Photo>>> call(String query) async {
-    final Result<List<Photo>> photos = await repository.getPhotos(query);
+  Future<Result<List<Photo>>> call(String params) async {
+    final Result<List<Photo>> photos = await repository.getPhotos(params);
 
     return photos.when(success: (photos) {
       final results = photos

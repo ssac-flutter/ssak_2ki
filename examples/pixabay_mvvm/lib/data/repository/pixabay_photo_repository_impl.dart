@@ -1,11 +1,10 @@
-import 'package:pixabay_mvvm/data/data_source/pixabay_api.dart';
-import 'package:pixabay_mvvm/data/data_source/pixabay_dio_api.dart';
+import 'package:pixabay_mvvm/data/data_source/api.dart';
+import 'package:pixabay_mvvm/domain/model/photo.dart';
 import 'package:pixabay_mvvm/domain/repository/photo_repository.dart';
 import 'package:pixabay_mvvm/domain/repository/result.dart';
-import 'package:pixabay_mvvm/domain/model/photo.dart';
 
 class PixabayPhotoRepositoryImpl implements PhotoRepository {
-  final PixabayDioApi api;
+  final Api api;
 
   PixabayPhotoRepositoryImpl(this.api);
 
