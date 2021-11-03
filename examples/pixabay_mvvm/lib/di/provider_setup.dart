@@ -1,5 +1,5 @@
 import 'package:pixabay_mvvm/data/data_source/api.dart';
-import 'package:pixabay_mvvm/data/data_source/network/pixabay_dio_api.dart';
+import 'package:pixabay_mvvm/data/data_source/remote/pixabay_dio_api.dart';
 import 'package:pixabay_mvvm/data/repository/pixabay_photo_repository_impl.dart';
 import 'package:pixabay_mvvm/domain/repository/photo_repository.dart';
 import 'package:pixabay_mvvm/domain/use_case/get_photos_use_case.dart';

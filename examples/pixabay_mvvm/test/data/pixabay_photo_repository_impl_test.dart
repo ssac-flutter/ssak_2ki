@@ -3,7 +3,7 @@ import 'package:http/http.dart' as http;
 import 'package:mockito/annotations.dart';
 import 'package:mockito/mockito.dart';
 import 'package:pixabay_mvvm/data/data_source/api.dart';
-import 'package:pixabay_mvvm/data/data_source/network/pixabay_api.dart';
+import 'package:pixabay_mvvm/data/data_source/remote/pixabay_api.dart';
 import 'package:pixabay_mvvm/data/repository/pixabay_photo_repository_impl.dart';
 import 'package:pixabay_mvvm/domain/model/photo.dart';
 import 'package:pixabay_mvvm/domain/repository/result.dart';
