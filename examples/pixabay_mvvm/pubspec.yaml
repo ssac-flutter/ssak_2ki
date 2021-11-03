@@ -39,6 +39,7 @@ dependencies:
   provider: ^6.0.1
   json_annotation: ^4.1.0
   freezed_annotation: ^0.15.0
+  equatable: ^2.0.3
 
 dev_dependencies:
   flutter_test:

@@ -7,6 +7,4 @@ abstract class Result<T> with _$Result<T> {
   const factory Result.success(T data) = Success;
 
   const factory Result.error(Exception e) = Error;
-
-  const factory Result.loading(bool isLoading) = Loading;
 }

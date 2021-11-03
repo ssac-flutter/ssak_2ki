@@ -1,6 +1,8 @@
 import 'package:pixabay_mvvm/data/data_source/pixabay_dio_api.dart';
 import 'package:pixabay_mvvm/data/repository/pixabay_photo_repository_impl.dart';
 import 'package:pixabay_mvvm/domain/repository/photo_repository.dart';
+import 'package:pixabay_mvvm/domain/use_case/get_photos.dart';
+import 'package:pixabay_mvvm/domain/use_case/main_use_cases.dart';
 import 'package:pixabay_mvvm/presentation/main/main_view_model.dart';
 import 'package:provider/provider.dart';
 import 'package:provider/single_child_widget.dart';
@@ -24,6 +26,9 @@ List<SingleChildWidget> dependentModels = [
   ProxyProvider<PixabayDioApi, PhotoRepository>(
     update: (context, api, _) => PixabayPhotoRepositoryImpl(api),
   ),
+  ProxyProvider<PhotoRepository, MainUseCases>(
+    update: (context, repository, _) => MainUseCases(getPhotos: GetPhotos(repository)),
+  ),
 ];
 
 // 4. ViewModels
@@ -31,7 +36,8 @@ List<SingleChildWidget> dependentModels = [
 List<SingleChildWidget> viewModels = [
   ChangeNotifierProvider<MainViewModel>(
     create: (context) => MainViewModel(
-      Provider.of<PhotoRepository>(context, listen: false),
+      context.read<MainUseCases>()
+      // Provider.of<GetPhotosUseCase>(context, listen: false),
     ),
   ),
 ];
