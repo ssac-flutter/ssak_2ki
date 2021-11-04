@@ -10,11 +10,6 @@ class PixabayPhotoRepositoryImpl implements PhotoRepository {
 
   @override
   Future<Result<List<Photo>>> getPhotos(String query) async {
-    try {
-      List<Photo> results = await api.fetch(query);
-      return Result.success(results);
-    } on Exception catch (e) {
-      return Result.error(e);
-    }
+    return await api.fetch(query);
   }
 }

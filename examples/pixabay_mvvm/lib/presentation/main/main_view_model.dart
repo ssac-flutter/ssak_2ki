@@ -1,7 +1,6 @@
 import 'dart:async';
 
 import 'package:flutter/material.dart';
-import 'package:pixabay_mvvm/data/data_source/exceptions.dart';
 import 'package:pixabay_mvvm/domain/model/photo.dart';
 import 'package:pixabay_mvvm/domain/repository/result.dart';
 import 'package:pixabay_mvvm/domain/use_case/main_use_cases.dart';
@@ -29,13 +28,8 @@ class MainViewModel with ChangeNotifier {
       _state = state.copyWith(photos: photos, isLoading: false);
       _eventController.add(const UiEvent.endLoading());
       notifyListeners();
-    }, error: (e) {
-      if ((e as Error).e is IllegalStateException) {
-        print('내가 뭔가 큰실수 했구나');
-        _eventController.add(const UiEvent.showSnackBar('네트워크 에러가 발생했습니다'));
-      } else {
-        print((results as Error).e.toString());
-      }
+    }, error: (message) {
+        _eventController.add(UiEvent.showSnackBar(message));
       _state = state.copyWith(isLoading: false);
     });
   }
