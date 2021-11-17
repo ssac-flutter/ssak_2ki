@@ -4,6 +4,8 @@ import 'package:file_picker/file_picker.dart';
 import 'package:flutter/material.dart';
 import 'package:path/path.dart';
 import 'package:storage_firestore_example/data/repository/firebase_storage_repository.dart';
+import 'package:storage_firestore_example/data/repository/firestore_db_repository.dart';
+import 'package:storage_firestore_example/domain/model/doc.dart';
 
 class AddScreen extends StatefulWidget {
   const AddScreen({Key? key}) : super(key: key);
@@ -16,6 +18,7 @@ class _AddScreenState extends State<AddScreen> {
   String? _fileName;
 
   final storageRepository = FirebaseStorageRepository();
+  final dbRepository = FirestoreDbRepository();
 
   @override
   Widget build(BuildContext context) {
@@ -30,9 +33,25 @@ class _AddScreenState extends State<AddScreen> {
 
           storageRepository.uploadFile(File(_fileName!)).then((result) {
             result.when(success: (downloadUrl) {
-              ScaffoldMessenger.of(context).showSnackBar(
-                SnackBar(content: Text(downloadUrl)),
+
+              final doc = Doc(
+                fileName: basename(downloadUrl),
+                downloadUrl: downloadUrl,
               );
+
+              dbRepository.insert(doc.toJson()).then((result) {
+
+                result.when(success: (message) {
+                  ScaffoldMessenger.of(context).showSnackBar(
+                    const SnackBar(content: Text('DB 작성 성공!!!')),
+                  );
+                }, error: (message){
+                  ScaffoldMessenger.of(context).showSnackBar(
+                    const SnackBar(content: Text('DB 작성 실패!!!')),
+                  );
+                },);
+              });
+
             }, error: (message) {
               ScaffoldMessenger.of(context).showSnackBar(
                 SnackBar(content: Text(message)),
