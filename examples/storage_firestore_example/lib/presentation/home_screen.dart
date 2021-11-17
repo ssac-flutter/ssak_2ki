@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:storage_firestore_example/presentation/add_screen.dart';
 
 class HomeScreen extends StatelessWidget {
   const HomeScreen({Key? key}) : super(key: key);
@@ -10,7 +11,13 @@ class HomeScreen extends StatelessWidget {
         title: const Text('Firebase Storage Sample'),
       ),
       body: Container(),
-      floatingActionButton: FloatingActionButton(onPressed: () {  },
+      floatingActionButton: FloatingActionButton(
+        onPressed: () {
+          Navigator.push(
+            context,
+            MaterialPageRoute(builder: (context) => const AddScreen()),
+          );
+        },
         child: const Icon(Icons.add),
       ),
     );
