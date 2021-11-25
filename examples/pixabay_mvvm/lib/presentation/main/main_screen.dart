@@ -47,7 +47,7 @@ class _MainScreenState extends State<MainScreen> {
       appBar: AppBar(
         centerTitle: true,
         title: const Text(
-          "PixaBay",
+          "이미지 검색 앱",
           style: TextStyle(color: Colors.black),
         ),
         backgroundColor: Colors.transparent,
@@ -75,7 +75,6 @@ class _MainScreenState extends State<MainScreen> {
               controller: _controller,
             ),
           ),
-          const Text("Create By sunmkim"),
           const SizedBox(
             height: 16,
           ),

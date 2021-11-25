@@ -28,7 +28,7 @@ class _HomeScreenState extends State<HomeScreen> {
 
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Video Player Sample'),
+        title: const Text('Video Player Sample 2'),
       ),
       body: Column(
         children: [
