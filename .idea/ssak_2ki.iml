@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<module type="JAVA_MODULE" version="4">
+  <component name="NewModuleRootManager" inherit-compiler-output="true">
+    <exclude-output />
+    <content url="file://$MODULE_DIR$">
+      <excludeFolder url="file://$MODULE_DIR$/examples/hello_flutter/build" />
+      <excludeFolder url="file://$MODULE_DIR$/examples/hello_flutter/.pub" />
+      <excludeFolder url="file://$MODULE_DIR$/examples/hello_flutter/.dart_tool" />
+      <excludeFolder url="file://$MODULE_DIR$/examples/image_search/build" />
+      <excludeFolder url="file://$MODULE_DIR$/examples/image_search/.dart_tool" />
+      <excludeFolder url="file://$MODULE_DIR$/examples/image_search/.pub" />
+      <excludeFolder url="file://$MODULE_DIR$/examples/pixabay_mvvm/.pub" />
+      <excludeFolder url="file://$MODULE_DIR$/examples/pixabay_mvvm/build" />
+      <excludeFolder url="file://$MODULE_DIR$/examples/pixabay_mvvm/.dart_tool" />
+      <excludeFolder url="file://$MODULE_DIR$/examples/subway/build" />
+      <excludeFolder url="file://$MODULE_DIR$/examples/subway/.dart_tool" />
+      <excludeFolder url="file://$MODULE_DIR$/examples/subway/.pub" />
+      <excludeFolder url="file://$MODULE_DIR$/examples/provider_sample/.dart_tool" />
+      <excludeFolder url="file://$MODULE_DIR$/examples/provider_sample/.pub" />
+      <excludeFolder url="file://$MODULE_DIR$/examples/provider_sample/build" />
+      <excludeFolder url="file://$MODULE_DIR$/examples/html_parser/.pub" />
+      <excludeFolder url="file://$MODULE_DIR$/examples/html_parser/.dart_tool" />
+      <excludeFolder url="file://$MODULE_DIR$/examples/html_parser/build" />
+      <excludeFolder url="file://$MODULE_DIR$/examples/network_sample/build" />
+      <excludeFolder url="file://$MODULE_DIR$/examples/network_sample/.pub" />
+      <excludeFolder url="file://$MODULE_DIR$/examples/network_sample/.dart_tool" />
+      <excludeFolder url="file://$MODULE_DIR$/examples/state_management/build" />
+      <excludeFolder url="file://$MODULE_DIR$/examples/state_management/.pub" />
+      <excludeFolder url="file://$MODULE_DIR$/examples/state_management/.dart_tool" />
+      <excludeFolder url="file://$MODULE_DIR$/examples/local_auth_exam/.pub" />
+      <excludeFolder url="file://$MODULE_DIR$/examples/local_auth_exam/build" />
+      <excludeFolder url="file://$MODULE_DIR$/examples/local_auth_exam/.dart_tool" />
+      <excludeFolder url="file://$MODULE_DIR$/examples/video_player_example/.dart_tool" />
+      <excludeFolder url="file://$MODULE_DIR$/examples/video_player_example/.pub" />
+      <excludeFolder url="file://$MODULE_DIR$/examples/video_player_example/build" />
+      <excludeFolder url="file://$MODULE_DIR$/examples/storage_firestore_example/build" />
+      <excludeFolder url="file://$MODULE_DIR$/examples/storage_firestore_example/.dart_tool" />
+      <excludeFolder url="file://$MODULE_DIR$/examples/storage_firestore_example/.pub" />
+    </content>
+    <orderEntry type="inheritedJdk" />
+    <orderEntry type="sourceFolder" forTests="false" />
+  </component>
+</module>
