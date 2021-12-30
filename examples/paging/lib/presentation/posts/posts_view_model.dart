@@ -14,8 +14,7 @@ class PostsViewModel with ChangeNotifier {
 
   PostsState get state => _state;
 
-  PagingController<int, Post> _pagingController =
-      PagingController(firstPageKey: 1);
+  late PagingController<int, Post> _pagingController;
 
   set pagingController(PagingController<int, Post> controller) {
     _pagingController = controller;
