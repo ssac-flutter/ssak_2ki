@@ -1,0 +1,68 @@
+import 'dart:async';
+
+import 'package:firebase_auth/firebase_auth.dart';
+import 'package:firebase_dynamic_links/firebase_dynamic_links.dart';
+import 'package:firebase_email_auth/presentation/home_screen.dart';
+import 'package:firebase_email_auth/presentation/login_event.dart';
+import 'package:firebase_email_auth/presentation/login_view_model.dart';
+import 'package:flutter/material.dart';
+
+class LoginScreen extends StatefulWidget {
+  const LoginScreen({Key? key}) : super(key: key);
+
+  @override
+  State<LoginScreen> createState() => _LoginScreenState();
+}
+
+class _LoginScreenState extends State<LoginScreen> {
+  final viewModel = LoginViewModel();
+
+  StreamSubscription? _streamSubscription;
+
+  @override
+  void initState() {
+    super.initState();
+
+    Future.microtask(() {
+
+      // 구독
+      _streamSubscription = viewModel.eventStream.listen((event) {
+        event.when(loginSuccess: () {
+          Navigator.push(
+            context,
+            MaterialPageRoute(builder: (context) => const HomeScreen()),
+          );
+        }, showSnackBar: (message) {
+          ScaffoldMessenger.of(context).showSnackBar(
+            SnackBar(content: Text(message)),
+          );
+        });
+      });
+    });
+  }
+
+  @override
+  void dispose() {
+    _streamSubscription?.cancel();
+    super.dispose();
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        title: const Text('Email Link 샘플'),
+      ),
+      body: Center(
+        child: ElevatedButton(
+          onPressed: () {
+            viewModel.onEvent(
+              const LoginEvent.sendSignInLinkToEmail('a811219@gmail.com'),
+            );
+          },
+          child: const Text('이메일 링크 전송'),
+        ),
+      ),
+    );
+  }
+}
