@@ -16,7 +16,9 @@ class _SplashScreenState extends State<SplashScreen> {
   void initState() {
     super.initState();
 
-    Future.microtask(() {
+    Future.microtask(() async {
+      await Future.delayed(const Duration(seconds: 3));
+
       String? email = Hive.box('settings').get('email');
       if (email != null) {
         Navigator.pushReplacement(
