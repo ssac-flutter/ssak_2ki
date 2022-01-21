@@ -21,7 +21,7 @@ class _SplashScreenState extends State<SplashScreen> {
 
       String? email = Hive.box('settings').get('email');
       if (email != null) {
-        Navigator.pushReplacement(
+        Navigator.push(
           context,
           MaterialPageRoute(builder: (context) => const HomeScreen()),
         );
