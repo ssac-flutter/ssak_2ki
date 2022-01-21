@@ -1,6 +1,7 @@
 import 'package:firebase_core/firebase_core.dart';
-import 'package:firebase_email_auth/presentation/login_screen.dart';
+import 'package:firebase_email_auth/presentation/login/login_screen.dart';
 import 'package:flutter/material.dart';
+import 'package:hive_flutter/hive_flutter.dart';
 import 'firebase_options.dart';
 import 'package:firebase_dynamic_links/firebase_dynamic_links.dart';
 
@@ -12,6 +13,9 @@ void main() async {
   );
 
   FirebaseDynamicLinks dynamicLinks = FirebaseDynamicLinks.instance;
+
+  await Hive.initFlutter();
+  await Hive.openBox('settings');
 
   runApp(const MyApp());
 }

@@ -3,9 +3,10 @@ import 'dart:async';
 import 'package:firebase_dynamic_links/firebase_dynamic_links.dart';
 import 'package:firebase_email_auth/domain/use_case/send_sign_in_link_to_email_use_case.dart';
 import 'package:firebase_email_auth/domain/use_case/sign_in_with_email_link_use_case.dart';
-import 'package:firebase_email_auth/presentation/login_event.dart';
-import 'package:firebase_email_auth/presentation/login_ui_event.dart';
+import 'package:firebase_email_auth/presentation/login/login_event.dart';
 import 'package:flutter/material.dart';
+
+import 'login_ui_event.dart';
 
 class LoginViewModel with ChangeNotifier {
   final _sendSignInLinkToEmailUseCase = SendSignInLinkToEmailUseCase();
@@ -27,8 +28,8 @@ class LoginViewModel with ChangeNotifier {
               'Successfully sent email verification'));
 
           subscription?.cancel();
-          subscription = FirebaseDynamicLinks.instance.onLink.listen((dynamicLinkData) async {
-
+          subscription = FirebaseDynamicLinks.instance.onLink
+              .listen((dynamicLinkData) async {
             final emailLink = dynamicLinkData.link.toString();
 
             // Confirm the link is a sign-in with email link.
@@ -43,12 +44,12 @@ class LoginViewModel with ChangeNotifier {
                 _eventController.add(LoginUiEvent.showSnackBar(message));
               },
             );
-          })..onError((error) {
-            // Handle errors
-            print(error.toString());
-            _eventController.add(LoginUiEvent.showSnackBar(error.toString()));
-          });
-
+          })
+            ..onError((error) {
+              // Handle errors
+              print(error.toString());
+              _eventController.add(LoginUiEvent.showSnackBar(error.toString()));
+            });
         } on InvalidEduDomainException {
           print('학교 계정이 아님');
           _eventController.add(const LoginUiEvent.showSnackBar('학교 계정이 아님'));

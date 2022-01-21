@@ -1,11 +1,10 @@
 import 'dart:async';
 
-import 'package:firebase_auth/firebase_auth.dart';
-import 'package:firebase_dynamic_links/firebase_dynamic_links.dart';
-import 'package:firebase_email_auth/presentation/home_screen.dart';
-import 'package:firebase_email_auth/presentation/login_event.dart';
-import 'package:firebase_email_auth/presentation/login_view_model.dart';
+import 'package:firebase_email_auth/presentation/home/home_screen.dart';
+import 'package:firebase_email_auth/presentation/login/login_event.dart';
 import 'package:flutter/material.dart';
+
+import 'login_view_model.dart';
 
 class LoginScreen extends StatefulWidget {
   const LoginScreen({Key? key}) : super(key: key);
