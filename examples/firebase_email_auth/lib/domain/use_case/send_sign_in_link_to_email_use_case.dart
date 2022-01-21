@@ -16,9 +16,9 @@ class SendSignInLinkToEmailUseCase {
 
   Future<void> call(String emailAuth) async {
     // 이메일 검사
-    // if (!emailAuth.endsWith('ac.kr')) {
-    //   throw InvalidEduDomainException('학교 이메일이 아닙니다');
-    // }
+    if (!emailAuth.endsWith('gmail.com')) {
+      throw InvalidEduDomainException('학교 이메일이 아닙니다');
+    }
 
     return FirebaseAuth.instance
         .sendSignInLinkToEmail(email: emailAuth, actionCodeSettings: acs);

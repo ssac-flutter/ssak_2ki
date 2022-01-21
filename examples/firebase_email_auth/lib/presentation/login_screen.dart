@@ -17,6 +17,7 @@ class LoginScreen extends StatefulWidget {
 class _LoginScreenState extends State<LoginScreen> {
   final viewModel = LoginViewModel();
 
+  final textController = TextEditingController();
   StreamSubscription? _streamSubscription;
 
   @override
@@ -24,7 +25,6 @@ class _LoginScreenState extends State<LoginScreen> {
     super.initState();
 
     Future.microtask(() {
-
       // 구독
       _streamSubscription = viewModel.eventStream.listen((event) {
         event.when(loginSuccess: () {
@@ -44,6 +44,7 @@ class _LoginScreenState extends State<LoginScreen> {
   @override
   void dispose() {
     _streamSubscription?.cancel();
+    textController.dispose();
     super.dispose();
   }
 
@@ -54,13 +55,20 @@ class _LoginScreenState extends State<LoginScreen> {
         title: const Text('Email Link 샘플'),
       ),
       body: Center(
-        child: ElevatedButton(
-          onPressed: () {
-            viewModel.onEvent(
-              const LoginEvent.sendSignInLinkToEmail('a811219@gmail.com'),
-            );
-          },
-          child: const Text('이메일 링크 전송'),
+        child: Column(
+          children: [
+            TextField(
+              controller: textController,
+            ),
+            ElevatedButton(
+              onPressed: () {
+                viewModel.onEvent(
+                  LoginEvent.sendSignInLinkToEmail(textController.text),
+                );
+              },
+              child: const Text('이메일 링크 전송'),
+            ),
+          ],
         ),
       ),
     );
