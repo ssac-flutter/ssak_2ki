@@ -3,6 +3,8 @@ import 'dart:async';
 import 'package:firebase_email_auth/presentation/home/home_screen.dart';
 import 'package:firebase_email_auth/presentation/login/login_event.dart';
 import 'package:flutter/material.dart';
+import 'package:hive_flutter/hive_flutter.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 import 'login_view_model.dart';
 
@@ -23,11 +25,21 @@ class _LoginScreenState extends State<LoginScreen> {
   void initState() {
     super.initState();
 
-    Future.microtask(() {
+    Future.microtask(() async {
+      // SharedPreferences prefs = await SharedPreferences.getInstance();
+      // String? email = prefs.getString('email');
+      String? email = Hive.box('settings').get('email');
+      if (email != null) {
+        Navigator.pushReplacement(
+          context,
+          MaterialPageRoute(builder: (context) => const HomeScreen()),
+        );
+      }
+
       // 구독
       _streamSubscription = viewModel.eventStream.listen((event) {
         event.when(loginSuccess: () {
-          Navigator.push(
+          Navigator.pushReplacement(
             context,
             MaterialPageRoute(builder: (context) => const HomeScreen()),
           );

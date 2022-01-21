@@ -1,5 +1,7 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_email_auth/core/result.dart';
+import 'package:hive_flutter/hive_flutter.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 class SignInWithEmailLinkUseCase {
   Future<Result<String>> call(String emailAuth, String emailLink) async {
@@ -12,6 +14,10 @@ class SignInWithEmailLinkUseCase {
 
         var userEmail = userCredential.user;
         print('Successfully signed in with email link!');
+
+        // email 저장
+        Hive.box('settings').put('email', emailAuth);
+
         return Result.success(emailAuth);
       }
       return const Result.error('잘못된 링크!!!');
