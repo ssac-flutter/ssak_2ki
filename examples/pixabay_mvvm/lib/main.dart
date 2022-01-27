@@ -1,15 +1,12 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:pixabay_mvvm/di/provider_setup.dart';
 import 'package:pixabay_mvvm/presentation/main/main_screen.dart';
-import 'package:provider/provider.dart';
 
 void main() {
-  runApp(
-    MultiProvider(
-      providers: globalProviders,
-      child: const MyApp(),
-    ),
-  );
+  Get.put(mainViewModel);
+
+  runApp(const MyApp());
 }
 
 class MyApp extends StatelessWidget {

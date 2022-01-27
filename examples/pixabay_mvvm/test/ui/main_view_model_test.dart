@@ -1,4 +1,3 @@
-
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mockito/annotations.dart';
 import 'package:mockito/mockito.dart';
@@ -24,7 +23,7 @@ void main() {
     // 실행
     await viewModel.fetch('iphone');
     // 확인
-    expect(viewModel.state.photos.length, 10);
+    expect(viewModel.state.value.photos.length, 10);
     // 검증
     verify(repository.getPhotos('iphone'));
 
@@ -34,7 +33,7 @@ void main() {
     // 실행
     await viewModel.fetch('iphone');
     // 확인
-    expect(viewModel.state.photos.length, 9);
+    expect(viewModel.state.value.photos.length, 9);
     // 검증
     verify(repository.getPhotos('iphone'));
 
@@ -44,7 +43,7 @@ void main() {
     // 실행
     await viewModel.fetch('iphone');
     // 확인
-    expect(viewModel.state.photos.length, 10);
+    expect(viewModel.state.value.photos.length, 10);
     // 검증
     verify(repository.getPhotos('iphone'));
   });
