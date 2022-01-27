@@ -47,9 +47,9 @@ class _MainScreenState extends State<MainScreen> {
         return Scaffold(
           appBar: AppBar(
             centerTitle: true,
-            title: const Text(
-              "이미지 검색 앱",
-              style: TextStyle(color: Colors.black),
+            title: Text(
+              'title'.tr,
+              style: const TextStyle(color: Colors.black),
             ),
             backgroundColor: Colors.transparent,
             elevation: 0,
