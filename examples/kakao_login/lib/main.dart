@@ -1,10 +1,18 @@
+import 'package:firebase_auth/firebase_auth.dart';
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
-import 'package:kakao_flutter_sdk/auth.dart';
-import 'package:kakao_login/presentation/login_screen.dart';
-import 'package:kakao_login/presentation/login_view_model.dart';
+import 'package:kakao_login/presentation/home/home_screen.dart';
+import 'package:kakao_login/presentation/login/login_screen.dart';
+import 'package:kakao_login/presentation/login/login_view_model.dart';
 import 'package:provider/provider.dart';
 
-void main() {
+import 'firebase_options.dart';
+
+void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  await Firebase.initializeApp(
+    options: DefaultFirebaseOptions.currentPlatform,
+  );
 
   runApp(
     MultiProvider(
@@ -29,7 +37,17 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
-      home: const LoginScreen(),
+      home: StreamBuilder<User?>(
+        stream: FirebaseAuth.instance.authStateChanges(),
+        initialData: null,
+        builder: (context, snapshot) {
+          if (snapshot.data == null) {
+            return const LoginScreen();
+          } else {
+            return const HomeScreen();
+          }
+        }
+      ),
     );
   }
 }

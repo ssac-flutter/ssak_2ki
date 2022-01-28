@@ -1,8 +1,7 @@
-
-import 'package:kakao_login/core/result.dart';
+import 'package:kakao_login/domain/model/token_response.dart';
 
 abstract class AuthRepository {
-  Future<Result> login();
+  Future<TokenResponse> login();
 
-  Future<Result> logout();
+  Future<void> logout();
 }

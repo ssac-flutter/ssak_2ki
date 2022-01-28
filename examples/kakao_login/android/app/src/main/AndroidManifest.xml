@@ -1,9 +1,36 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.example.kakao_login">
+
+    <uses-permission android:name="android.permission.INTERNET"/>
+
+    <queries>
+        <intent>
+            <action android:name="android.intent.action.VIEW" />
+            <category android:name="android.intent.category.BROWSABLE" />
+            <data android:scheme="https" />
+        </intent>
+        <intent>
+            <action android:name="android.intent.action.VIEW" />
+            <category android:name="android.intent.category.APP_BROWSER" />
+            <data android:scheme="https" />
+        </intent>
+    </queries>
+
    <application
         android:label="kakao_login"
         android:name="${applicationName}"
         android:icon="@mipmap/ic_launcher">
+
+       <activity
+           android:name="com.linusu.flutter_web_auth.CallbackActivity"
+           android:exported="true">
+           <intent-filter android:label="flutter_web_auth">
+               <action android:name="android.intent.action.VIEW" />
+               <category android:name="android.intent.category.DEFAULT" />
+               <category android:name="android.intent.category.BROWSABLE" />
+               <data android:scheme="webauthcallback" />
+           </intent-filter>
+       </activity>
 
        <activity android:name="com.kakao.sdk.flutter.AuthCodeCustomTabsActivity">
            <intent-filter android:label="flutter_web_auth">
