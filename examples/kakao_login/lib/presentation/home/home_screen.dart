@@ -1,9 +1,22 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:kakao_login/data/data_source/local/token_local_data_source.dart';
+import 'package:kakao_login/data/data_source/remote/firebase_auth_remote_data_source.dart';
+import 'package:kakao_login/data/data_source/remote/kakao_remote_data_source.dart';
+import 'package:kakao_login/data/repository/kakao_auth_repository_impl.dart';
+import 'package:kakao_login/domain/use_case/logout_use_case.dart';
 import 'package:kakao_login/service/auth_service.dart';
 
 class HomeScreen extends StatelessWidget {
-  const HomeScreen({Key? key}) : super(key: key);
+  HomeScreen({Key? key}) : super(key: key);
+
+  final LogoutUseCase _logoutUseCase = LogoutUseCase(
+    KakaoAuthRepositoryImpl(
+      KakaoRemoteDataSource(),
+      FirebaseAuthRemoteDataSource(),
+      TokenLocalDataSource(),
+    ),
+  );
 
   @override
   Widget build(BuildContext context) {
@@ -22,7 +35,8 @@ class HomeScreen extends StatelessWidget {
             Text('${FirebaseAuth.instance.currentUser?.email}'),
             ElevatedButton(
               onPressed: () {
-                AuthService.instance.logout();
+                // AuthService.instance.logout();
+                _logoutUseCase();
               },
               child: const Text('로그아웃'),
             ),

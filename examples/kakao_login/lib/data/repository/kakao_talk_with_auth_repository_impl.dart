@@ -1,6 +1,7 @@
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'package:kakao_flutter_sdk/all.dart';
 import 'package:kakao_login/domain/model/token_response.dart';
+import 'package:kakao_login/domain/model/user_model.dart';
 import 'package:kakao_login/domain/repository/auth_repository.dart';
 
 class KakaoTalkWithAuthRepositoryImpl implements AuthRepository {
@@ -44,6 +45,12 @@ class KakaoTalkWithAuthRepositoryImpl implements AuthRepository {
   Future<void> logout() async {
     await secureStorage.delete(key: 'refresh_token');
     await UserApi.instance.logout();
+  }
+
+  @override
+  Future<String> createCustomToken(UserModel userModel) {
+    // TODO: implement createCustomToken
+    throw UnimplementedError();
   }
 }
 
