@@ -4,12 +4,12 @@ import 'package:kakao_login/domain/repository/auth_repository.dart';
 import 'package:kakao_login/domain/repository/token_repository.dart';
 import 'package:kakao_login/domain/repository/user_repository.dart';
 
-class LoginUseCase {
+class OAuthLoginUseCase {
   final AuthRepository _authRepository;
   final TokenRepository _tokenRepository;
   final UserRepository _userRepository;
 
-  LoginUseCase(
+  OAuthLoginUseCase(
     this._authRepository,
     this._tokenRepository,
     this._userRepository,

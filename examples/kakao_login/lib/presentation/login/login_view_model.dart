@@ -7,12 +7,12 @@ import 'package:kakao_login/data/data_source/remote/kakao_remote_data_source.dar
 import 'package:kakao_login/data/repository/kakao_auth_repository_impl.dart';
 import 'package:kakao_login/data/repository/kakao_user_repository_impl.dart';
 import 'package:kakao_login/data/repository/token_repository_impl.dart';
-import 'package:kakao_login/domain/use_case/login_use_case.dart';
+import 'package:kakao_login/domain/use_case/oauth_login_use_case.dart';
 import 'package:kakao_login/presentation/login/login_event.dart';
 import 'package:kakao_login/presentation/login/login_ui_event.dart';
 
 class LoginViewModel with ChangeNotifier {
-  final LoginUseCase kakaoLoginUseCase = LoginUseCase(
+  final OAuthLoginUseCase kakaoLoginUseCase = OAuthLoginUseCase(
       KakaoAuthRepositoryImpl(
         KakaoRemoteDataSource(),
         FirebaseAuthRemoteDataSource(),

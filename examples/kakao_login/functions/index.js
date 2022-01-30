@@ -30,7 +30,7 @@ exports.createCustomToken = functions.https.onRequest(
     const uid = `kakao:${user.uid}`;
     const updateParams = {
       email: user.email,
-      photoURL: user.photoUrl,
+      photoURL: user.photoURL,
       displayName: user.displayName,
     };
     functions.logger.info(updateParams);

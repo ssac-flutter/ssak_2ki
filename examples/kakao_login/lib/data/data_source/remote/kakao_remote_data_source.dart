@@ -1,15 +1,15 @@
 import 'dart:convert';
 
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:flutter_web_auth/flutter_web_auth.dart';
 import 'package:http/http.dart' as http;
 import 'package:kakao_login/domain/model/token_response.dart';
 import 'package:kakao_login/domain/model/user_model.dart';
 
 class KakaoRemoteDataSource {
-  static const clientId = '776149c5b579ed8938aae9974f31e747';
-  static const redirectUri =
-      'http://10.0.2.2:5001/fir-test-b1efc/us-central1/kakaologin';
+  final _clientId = dotenv.env['KAKAO_CLIENT_ID'] as String;
+  final _redirectUri = dotenv.env['KAKAO_REDIRECT_URL'] as String;
 
   final http.Client _client;
 
@@ -54,8 +54,8 @@ class KakaoRemoteDataSource {
   Future<TokenResponse> requestToken(String authorizationCode) async {
     final response = await _client
         .post(Uri.parse('https://kauth.kakao.com/oauth/token'), body: {
-      'client_id': clientId,
-      'redirect_uri': redirectUri,
+      'client_id': _clientId,
+      'redirect_uri': _redirectUri,
       'grant_type': 'authorization_code',
       'code': authorizationCode,
     });
@@ -74,8 +74,8 @@ class KakaoRemoteDataSource {
   Future<String> requestAuthorizationCode() async {
     final url = Uri.https('kauth.kakao.com', '/oauth/authorize', {
       'response_type': 'code',
-      'client_id': clientId,
-      'redirect_uri': redirectUri,
+      'client_id': _clientId,
+      'redirect_uri': _redirectUri,
       'scope': 'account_email profile_nickname profile_image',
     });
 

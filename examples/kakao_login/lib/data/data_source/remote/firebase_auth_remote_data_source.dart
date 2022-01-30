@@ -1,9 +1,10 @@
+import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:http/http.dart' as http;
 import 'package:kakao_login/domain/model/user_model.dart';
 
 class FirebaseAuthRemoteDataSource {
-  static const createCustomTokenUrl =
-      'http://10.0.2.2:5001/fir-test-b1efc/us-central1/createCustomToken';
+  final String createCustomTokenUrl =
+      dotenv.env['CREATE_CUSTOM_TOKEN_URL'] as String;
 
   final http.Client _client;
 
