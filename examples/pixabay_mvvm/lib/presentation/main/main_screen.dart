@@ -21,11 +21,9 @@ class _MainScreenState extends State<MainScreen> {
 
     viewModel.eventStream.listen((event) {
       event.when(showSnackBar: (message) {
-        final snackBar = SnackBar(content: Text(message));
-        ScaffoldMessenger.of(context).showSnackBar(snackBar);
+        Get.snackbar(message, message);
       }, endLoading: () {
-        const snackBar = SnackBar(content: Text('로딩이 완료되었습니다'));
-        ScaffoldMessenger.of(context).showSnackBar(snackBar);
+        Get.snackbar('', '로딩이 완료되었습니다');
       });
     });
   }

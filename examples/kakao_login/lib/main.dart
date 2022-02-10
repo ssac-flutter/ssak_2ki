@@ -1,6 +1,8 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
+import 'package:flutterfire_ui/auth.dart';
+import 'package:kakao_login/presentation/auth_gate/auth_gate.dart';
 import 'package:kakao_login/presentation/home/home_screen.dart';
 import 'package:kakao_login/presentation/home/home_view_model.dart';
 import 'package:kakao_login/presentation/login/login_screen.dart';
@@ -45,17 +47,7 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
-      home: StreamBuilder<User?>(
-        stream: FirebaseAuth.instance.authStateChanges(),
-        initialData: null,
-        builder: (context, snapshot) {
-          if (snapshot.data == null) {
-            return const LoginScreen();
-          } else {
-            return const HomeScreen();
-          }
-        }
-      ),
+      home: const AuthGate(),
     );
   }
 }

@@ -65,22 +65,27 @@ class _LoginScreenState extends State<LoginScreen> {
       appBar: AppBar(
         title: const Text('Email Link 샘플'),
       ),
-      body: Center(
-        child: Column(
-          children: [
-            TextField(
-              controller: textController,
+      body: StreamBuilder<Object>(
+        stream: viewModel.eventStream,
+        builder: (context, snapshot) {
+          return Center(
+            child: Column(
+              children: [
+                TextField(
+                  controller: textController,
+                ),
+                ElevatedButton(
+                  onPressed: () {
+                    viewModel.onEvent(
+                      LoginEvent.sendSignInLinkToEmail(textController.text),
+                    );
+                  },
+                  child: const Text('이메일 링크 전송'),
+                ),
+              ],
             ),
-            ElevatedButton(
-              onPressed: () {
-                viewModel.onEvent(
-                  LoginEvent.sendSignInLinkToEmail(textController.text),
-                );
-              },
-              child: const Text('이메일 링크 전송'),
-            ),
-          ],
-        ),
+          );
+        }
       ),
     );
   }
